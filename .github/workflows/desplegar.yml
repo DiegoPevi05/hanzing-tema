@@ -1,0 +1,106 @@
+# Despliega el tema FIERAFLEX / Grupo Hanzing en Hostinger
+# cada vez que se sube un cambio a la rama main (o al ejecutarlo a mano desde Actions).
+#
+# Secretos (Settings → Secrets and variables → Actions → pestaña Secrets):
+#   SSH_HOST         IP del servidor (hPanel → Avanzado → Acceso SSH)
+#   SSH_PORT         Puerto SSH (en Hostinger suele ser 65002)
+#   SSH_USER         Usuario SSH (u123456789)
+#   SSH_PRIVATE_KEY  Clave privada cuya clave pública está agregada en hPanel
+#   RUTA_WP          Carpeta de WordPress del enlace de prueba, sin barra final, p. ej.
+#                    /home/u123456789/domains/prueba.midominio.com/public_html
+#
+# Variables opcionales (misma pantalla → pestaña Variables):
+#   MODO_PRUEBA      "si" = pide a Google no indexar el sitio (enlace de prueba). Vacía = si.
+#   SEMBRAR          "si" = vuelve a cargar el contenido inicial (lonas, industrias, páginas, menú).
+#                    Sin ella, el contenido solo se carga la primera vez (cuando no hay lonas).
+name: Desplegar Hanzing en Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: desplegar
+  cancel-in-progress: false
+
+jobs:
+  desplegar:
+    runs-on: ubuntu-latest
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      RUTA_WP: ${{ secrets.RUTA_WP }}
+      MODO_PRUEBA: ${{ vars.MODO_PRUEBA || 'si' }}
+      SEMBRAR: ${{ vars.SEMBRAR }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Revisar sintaxis de PHP
+        run: find hanzing semilla -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
+
+      - name: Comprobar secretos
+        id: listo
+        run: |
+          if [ -z "$SSH_HOST" ] || [ -z "$SSH_USER" ] || [ -z "$RUTA_WP" ] || [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "::warning::Faltan secretos (SSH_HOST, SSH_PORT, SSH_USER, SSH_PRIVATE_KEY, RUTA_WP). No se despliega."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Preparar clave SSH
+        if: steps.listo.outputs.ok == 'true'
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "${SSH_PORT:-65002}" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Subir tema y contenido inicial
+        if: steps.listo.outputs.ok == 'true'
+        run: |
+          SSH="ssh -i $HOME/.ssh/id_deploy -p ${SSH_PORT:-65002}"
+          DEST="$SSH_USER@$SSH_HOST"
+          $SSH "$DEST" "mkdir -p '$RUTA_WP/wp-content/themes' ~/hanzing-semilla"
+          rsync -az --delete --exclude '.DS_Store' -e "$SSH" hanzing/ "$DEST:$RUTA_WP/wp-content/themes/hanzing/"
+          # La semilla queda fuera de public_html: no se publica, solo la usa WP-CLI.
+          rsync -az --delete --exclude '.DS_Store' -e "$SSH" semilla/ "$DEST:hanzing-semilla/"
+
+      - name: Activar tema, cargar contenido y limpiar la caché
+        if: steps.listo.outputs.ok == 'true'
+        run: |
+          ssh -i ~/.ssh/id_deploy -p "${SSH_PORT:-65002}" "$SSH_USER@$SSH_HOST" \
+            "RUTA_WP='$RUTA_WP' MODO_PRUEBA='$MODO_PRUEBA' SEMBRAR='$SEMBRAR' bash -s" <<'REMOTO'
+          set -e
+          cd "$RUTA_WP"
+          if ! wp core is-installed; then
+            echo "WordPress todavía no está instalado en $RUTA_WP."
+            exit 1
+          fi
+
+          # Español de México y enlaces limpios (/productos/, /contacto/...).
+          wp language core is-installed es_MX || wp language core install es_MX
+          [ "$(wp option get WPLANG)" = "es_MX" ] || wp site switch-language es_MX
+          [ "$(wp option get permalink_structure)" = "/%postname%/" ] || wp rewrite structure '/%postname%/' --quiet
+
+          if [ "$(wp option get stylesheet)" != "hanzing" ]; then
+            wp theme activate hanzing
+          fi
+          echo "Tema activo: $(wp option get stylesheet)"
+
+          # Contenido inicial: la primera vez, o cuando se pide con SEMBRAR=si.
+          LONAS="$(wp post list --post_type=lona --post_status=any --format=count 2>/dev/null || echo 0)"
+          if [ "$LONAS" = "0" ] || [ "$SEMBRAR" = "si" ]; then
+            wp eval-file ~/hanzing-semilla/seed.php ~/hanzing-semilla/img
+          fi
+
+          # Enlace de prueba: que Google no lo indexe.
+          if [ "$MODO_PRUEBA" = "si" ]; then wp option update blog_public 0 --quiet; else wp option update blog_public 1 --quiet; fi
+
+          wp rewrite flush --quiet || true
+          wp cache flush --quiet || true
+          wp litespeed-purge all --quiet 2>/dev/null || true
+          echo "Listo: $(wp option get home)"
+          REMOTO
