@@ -45,6 +45,9 @@ add_action( 'wp_enqueue_scripts', function () {
 } );
 
 add_action( 'wp_head', function () {
+	// Sello del despliegue (lo escribe GitHub Actions) para saber qué versión está publicada.
+	$build = is_readable( __DIR__ . '/build.txt' ) ? trim( (string) file_get_contents( __DIR__ . '/build.txt' ) ) : 'local';
+	echo '<meta name="hz-build" content="' . esc_attr( $build ) . '">' . "\n";
 	echo "<script>document.documentElement.classList.add('js')</script>\n";
 	echo '<link rel="preload" href="' . esc_url( get_template_directory_uri() . '/assets/fonts/source-sans-3-latin-wght-normal.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	echo '<meta name="theme-color" content="#ffffff">' . "\n";

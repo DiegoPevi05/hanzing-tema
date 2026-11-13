@@ -64,6 +64,8 @@ jobs:
           SSH="ssh -i $HOME/.ssh/id_deploy -p ${SSH_PORT:-65002}"
           DEST="$SSH_USER@$SSH_HOST"
           $SSH "$DEST" "mkdir -p '$RUTA_WP/wp-content/themes' ~/hanzing-semilla"
+          # Sello de la versión publicada: se imprime en la página como <meta name="hz-build">.
+          echo "${GITHUB_SHA::7}" > hanzing/build.txt
           rsync -az --delete --exclude '.DS_Store' -e "$SSH" hanzing/ "$DEST:$RUTA_WP/wp-content/themes/hanzing/"
           # La semilla queda fuera de public_html: no se publica, solo la usa WP-CLI.
           rsync -az --delete --exclude '.DS_Store' -e "$SSH" semilla/ "$DEST:hanzing-semilla/"
@@ -107,5 +109,40 @@ jobs:
           wp rewrite flush --quiet || true
           wp cache flush --quiet || true
           wp litespeed-purge all --quiet 2>/dev/null || true
-          echo "Listo: $(wp option get home)"
+
+          # Cachés del servidor web: la caché de PHP (OPcache) guarda el código viejo de las plantillas
+          # y la caché de páginas de LiteSpeed guarda páginas ya armadas. WP-CLI no llega a ninguna de
+          # las dos, así que se limpian con una petición web a un archivo temporal.
+          TOKEN="hz-limpiar-$(date +%s)-$RANDOM"
+          cat > "$TOKEN.php" <<'PHP'
+          <?php
+          header( 'X-LiteSpeed-Purge: *' );
+          header( 'Cache-Control: no-store' );
+          echo function_exists( 'opcache_reset' ) && opcache_reset() ? 'opcache:ok' : 'opcache:no';
+          PHP
+          HOME_URL="$(wp option get home)"
+          echo "Limpieza de cachés: $(curl -s -m 30 "$HOME_URL/$TOKEN.php" || echo 'sin respuesta')"
+          rm -f "$TOKEN.php"
+          echo "Listo: $HOME_URL"
           REMOTO
+
+      - name: Comprobar la versión publicada
+        if: steps.listo.outputs.ok == 'true'
+        run: |
+          SSH="ssh -i $HOME/.ssh/id_deploy -p ${SSH_PORT:-65002} $SSH_USER@$SSH_HOST"
+          HOME_URL="$($SSH "cd '$RUTA_WP' && wp option get home" | tr -d '\r')"
+          ESPERADA="${GITHUB_SHA::7}"
+          leer() { curl -sL -m 30 -A 'Mozilla/5.0 (despliegue Hanzing)' "$1" | grep -o 'name="hz-build" content="[^"]*"' | sed 's/.*content="//;s/"//'; }
+          FRESCA="$(leer "$HOME_URL/?hz=$(date +%s)")"
+          PUBLICA="$(leer "$HOME_URL/")"
+          echo "Sitio: $HOME_URL"
+          echo "Versión esperada: $ESPERADA"
+          echo "Versión sin caché: ${FRESCA:-no encontrada}"
+          echo "Versión que ve el público: ${PUBLICA:-no encontrada}"
+          if [ "$FRESCA" != "$ESPERADA" ]; then
+            echo "::error::El servidor no está sirviendo esta versión del tema (sirve '${FRESCA:-nada}'). Revisa RUTA_WP: puede apuntar a otra instalación de WordPress."
+            exit 1
+          fi
+          if [ "$PUBLICA" != "$ESPERADA" ]; then
+            echo "::warning::La página pública sigue en caché ('${PUBLICA:-sin sello}'). Purga la caché del CDN en hPanel → Rendimiento → CDN."
+          fi
