@@ -141,6 +141,7 @@ $fotos = array(
 	'velaria-escuela' => 'Velaria de lona blanca tensada sobre el patio de una escuela',
 	// Foto de archivo (Unsplash, licencia libre): no es el almacén de Grupo Hanzing. Ver semilla/CREDITOS.md.
 	'nave-rollos'     => 'Nave industrial con grandes rollos de material textil a ambos lados',
+	'almacen-rollos'  => 'Anaqueles metálicos de almacén con rollos de material',
 );
 // Por seguridad no se publican fotos de la fachada del almacén: se borra si quedó de una carga anterior.
 foreach ( get_posts( array( 'post_type' => 'attachment', 'name' => 'hz-almacen-hanzing', 'post_status' => 'inherit', 'posts_per_page' => -1 ) ) as $viejo ) {
