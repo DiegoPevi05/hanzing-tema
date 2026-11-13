@@ -19,7 +19,7 @@ $perfiles = array(
 	),
 );
 ?>
-<section class="escala section" aria-labelledby="escala-title">
+<section class="escala section section--steel" aria-labelledby="escala-title">
 	<div class="wrap">
 		<div class="head">
 			<h2 id="escala-title" data-reveal>Compra a tu escala</h2>
@@ -27,11 +27,11 @@ $perfiles = array(
 		</div>
 		<div class="escala__grid">
 			<?php foreach ( $perfiles as $n => $p ) : ?>
-				<article class="perfil<?php echo $n ? ' perfil--field' : ''; ?>" data-reveal style="--i:<?php echo (int) $n; ?>">
+				<article class="perfil" data-reveal style="--i:<?php echo (int) $n; ?>">
 					<p class="perfil__rango"><?php echo esc_html( $p['rango'] ); ?></p>
 					<h3><?php echo esc_html( $p['titulo'] ); ?></h3>
 					<p><?php echo esc_html( $p['texto'] ); ?></p>
-					<a class="button <?php echo $n ? 'button--accent' : 'button--field'; ?>" href="<?php echo esc_url( hanzing_whatsapp( $p['msg'] ) ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> <?php echo esc_html( $p['boton'] ); ?></a>
+					<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp( $p['msg'] ) ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> <?php echo esc_html( $p['boton'] ); ?></a>
 				</article>
 			<?php endforeach; ?>
 		</div>

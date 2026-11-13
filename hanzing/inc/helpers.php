@@ -22,6 +22,7 @@ function hanzing_icon( $name ) {
 		'regla'    => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M2 8h20v8H2zM6 8v3M10 8v4M14 8v3M18 8v4"/>',
 		'reloj'    => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 7v5l3 2"/>',
 		'cajas'    => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3 11h8v9H3zM13 11h8v9h-8zM8 3h8v8H8z"/>',
+		'libro'    => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11M9 8h6"/>',
 		'grain'    => '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M7 8l5-5 5 5M7 16l5 5 5-5"/>',
 	);
 	return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' . ( $paths[ $name ] ?? '' ) . '</svg>';

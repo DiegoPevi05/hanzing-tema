@@ -16,6 +16,7 @@ require __DIR__ . '/inc/industrias.php';
 require __DIR__ . '/inc/testimonios.php';
 require __DIR__ . '/inc/medicion.php';
 require __DIR__ . '/inc/otros.php';
+require __DIR__ . '/inc/reclamos.php';
 
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'title-tag' );
@@ -42,7 +43,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
 add_action( 'wp_head', function () {
 	echo "<script>document.documentElement.classList.add('js')</script>\n";
-	echo '<link rel="preload" href="' . esc_url( get_stylesheet_directory_uri() . '/assets/fonts/archivo-400-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
+	echo '<link rel="preload" href="' . esc_url( get_stylesheet_directory_uri() . '/assets/fonts/source-sans-3-latin-wght-normal.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	echo '<meta name="theme-color" content="#ffffff">' . "\n";
 }, 1 );
 

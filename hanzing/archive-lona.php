@@ -2,14 +2,22 @@
 get_header();
 $lonas = hanzing_lonas();
 ?>
-<section class="page-hero">
-	<?php echo hanzing_img( hanzing_foto_id( 'complementos' ), '100vw', array( 'loading' => 'eager', 'alt' => '' ) ); ?>
-	<div class="page-hero__scrim"></div>
-	<div class="wrap page-hero__body">
-		<nav class="crumbs" aria-label="Ruta de navegación" data-load><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Inicio</a><span aria-hidden="true">/</span><span>Lonas</span></nav>
-		<h1 data-load style="--d:100ms">Rollos de lona FIERAFLEX</h1>
-		<p class="lead" data-load style="--d:220ms">Lona de PVC sobre tejido de poliéster de alta resistencia. Elige por cuánto cuerpo necesita tu proyecto y cuánta luz debe pasar.</p>
-		<?php get_template_part( 'template-parts/sello', null, array( 'd' => '320ms' ) ); ?>
+<?php
+get_template_part( 'template-parts/page-hero', null, array(
+	'foto'   => hanzing_foto_id( 'complementos' ),
+	'titulo' => 'Rollos de lona FIERAFLEX',
+	'lead'   => 'Lona de PVC sobre tejido de poliéster de alta resistencia, en rollos de 50 m y sin pedido mínimo. Elige por cuánto cuerpo necesita tu proyecto y cuánta luz debe pasar.',
+) );
+?>
+
+<section class="section" aria-labelledby="catalogo-title">
+	<div class="wrap">
+		<h2 id="catalogo-title" class="visually-hidden">Catálogo</h2>
+		<ul class="cards">
+			<?php foreach ( $lonas as $i => $l ) : ?>
+				<?php get_template_part( 'template-parts/lona-card', null, array( 'lona' => $l, 'i' => $i ) ); ?>
+			<?php endforeach; ?>
+		</ul>
 	</div>
 </section>
 
@@ -38,6 +46,8 @@ $lonas = hanzing_lonas();
 		</div>
 	</div>
 </section>
+
+<?php get_template_part( 'template-parts/luz' ); ?>
 
 <?php get_template_part( 'template-parts/capas' ); ?>
 

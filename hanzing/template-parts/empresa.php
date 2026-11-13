@@ -8,7 +8,6 @@ $hz = get_theme_mod( 'custom_logo' );
 	<div class="wrap">
 		<div class="empresa__grid">
 			<div class="empresa__body">
-				<?php echo $hz ? wp_get_attachment_image( $hz, 'full', false, array( 'class' => 'empresa__logo', 'alt' => 'Grupo Hanzing', 'loading' => 'lazy', 'sizes' => '140px' ) ) : ''; ?>
 				<h2 id="empresa-title" data-reveal>Con el respaldo de Grupo Hanzing</h2>
 				<p class="lead" data-reveal style="--i:1">FIERAFLEX es la marca de lonas de PVC de Grupo Hanzing, el grupo empresarial mexicano que articula la operación, las relaciones comerciales y el crecimiento de sus marcas.</p>
 				<dl class="empresa__pillars">
@@ -20,6 +19,7 @@ $hz = get_theme_mod( 'custom_logo' );
 				<a class="button button--field" href="<?php echo esc_url( home_url( '/nosotros/' ) ); ?>" data-reveal style="--i:5">Conocer Grupo Hanzing</a>
 			</div>
 			<figure class="empresa__photo" data-reveal>
+				<?php echo $hz ? wp_get_attachment_image( $hz, 'full', false, array( 'class' => 'empresa__logo', 'alt' => 'Grupo Hanzing', 'loading' => 'lazy', 'sizes' => '140px' ) ) : ''; ?>
 				<?php echo hanzing_img( hanzing_foto_id( 'atencion-ventas' ), '(min-width: 900px) 50vw, 100vw', array( 'alt' => 'Ejecutiva de ventas de Grupo Hanzing atendiendo una llamada frente al muestrario de rollos' ) ); ?>
 			</figure>
 		</div>

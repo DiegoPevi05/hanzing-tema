@@ -138,6 +138,7 @@ $fotos = array(
 	'cubierta-industrial' => 'Cubierta industrial de lona sobre un patio de maniobras',
 	'cancha-techada'  => 'Cancha de pádel cubierta con lona blanca',
 	'lona-traspaulin' => 'Trama de poliéster de una lona Traspaulín vista de cerca',
+	'velaria-escuela' => 'Velaria de lona blanca tensada sobre el patio de una escuela',
 );
 // Por seguridad no se publican fotos de la fachada del almacén: se borra si quedó de una carga anterior.
 foreach ( get_posts( array( 'post_type' => 'attachment', 'name' => 'hz-almacen-hanzing', 'post_status' => 'inherit', 'posts_per_page' => -1 ) ) as $viejo ) {
@@ -164,6 +165,8 @@ $logo = hz_seed_image( 'logo-hanzing.png', 'Grupo Hanzing' );
 set_theme_mod( 'custom_logo', $logo );
 update_option( 'hanzing_logo_fieraflex', hz_seed_image( 'logo-fieraflex.png', 'FIERAFLEX' ) );
 update_option( 'hanzing_logo_fieraflex_h', hz_seed_image( 'logo-fieraflex-horizontal.png', 'FIERAFLEX' ) );
+// Ícono de la pestaña del navegador: el león de FIERAFLEX.
+update_option( 'site_icon', (int) get_option( 'hanzing_leon' ) );
 
 /* ---------- Páginas ---------- */
 
@@ -171,18 +174,25 @@ $paginas = array(
 	'inicio'    => array( 'Inicio', '' ),
 	'servicios' => array( 'Lona y asesoría técnica', 'Rollos de lona de PVC, accesorios y asesoría para elegir el material correcto. Atendemos desde un rollo hasta volumen de distribuidor.' ),
 	'nosotros'  => array( 'FIERAFLEX y Grupo Hanzing', 'Dos marcas, una visión y un mismo respaldo: FIERAFLEX es la marca de lonas de PVC de Grupo Hanzing.' ),
+	'terminos-y-condiciones' => array( 'Términos y condiciones', 'Condiciones de uso del sitio, cotizaciones, envíos y reclamos de FIERAFLEX.' ),
+	'politica-de-privacidad' => array( 'Política de privacidad', 'Aviso de privacidad: qué datos recabamos, para qué los usamos y cómo ejercer tus derechos.' ),
+	'libro-de-reclamaciones' => array( 'Libro de reclamaciones', 'Registra un reclamo o una queja sobre tu pedido. Te enviamos una copia a tu correo.' ),
 	'contacto'  => array( 'Cotiza tu lona', 'Dinos qué lona buscas, cuántos rollos y para qué proyecto. Te contestamos casi de inmediato por WhatsApp en horario de atención.' ),
 );
 $page_ids = array();
 foreach ( $paginas as $slug => $p ) {
 	$page_ids[ $slug ] = hz_seed_post( 'page', $slug, array( 'post_title' => $p[0], 'post_excerpt' => $p[1] ) );
 }
+foreach ( array( 'terminos-y-condiciones', 'politica-de-privacidad' ) as $legal ) {
+	update_post_meta( $page_ids[ $legal ], '_wp_page_template', 'page-legal.php' );
+}
+update_option( 'wp_page_for_privacy_policy', $page_ids['politica-de-privacidad'] );
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $page_ids['inicio'] );
 
 /* Contenido editable de las páginas, si el tema lo trae. */
 $patterns = get_stylesheet_directory() . '/patterns-content';
-foreach ( array( 'servicios', 'nosotros', 'contacto' ) as $slug ) {
+foreach ( array( 'servicios', 'nosotros', 'contacto', 'terminos-y-condiciones', 'politica-de-privacidad' ) as $slug ) {
 	if ( file_exists( "$patterns/$slug.html" ) ) {
 		$html = str_replace( array_map( fn( $k ) => "{{foto:$k}}", array_keys( $ids ) ), array_map( 'wp_get_attachment_url', $ids ), file_get_contents( "$patterns/$slug.html" ) );
 		$html = str_replace( array_map( fn( $k ) => "{{id:$k}}", array_keys( $ids ) ), array_values( $ids ), $html );

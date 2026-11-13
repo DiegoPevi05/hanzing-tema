@@ -10,6 +10,5 @@ get_template_part( 'template-parts/page-hero', null, array( 'foto' => get_post_t
 	</div>
 </section>
 <?php
-get_template_part( 'template-parts/confianza' );
 get_template_part( 'template-parts/contacto-banda' );
 get_footer();

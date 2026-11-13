@@ -1,64 +1,103 @@
 <?php
+/**
+ * Portada FIERAFLEX: dirección "industrial europeo".
+ * Foto a sangre con panel, cifras, catálogo en tarjetas, industrias, ventajas, escala de compra,
+ * centro de fichas técnicas, respaldo de Grupo Hanzing y contacto. Movimiento mínimo.
+ */
 get_header();
 $lonas = hanzing_lonas();
-$foto  = (int) get_theme_mod( 'hz_portada_foto1' ) ?: hanzing_foto_id( 'rollos-colores' );
+$foto  = (int) get_theme_mod( 'hz_portada_foto1' ) ?: hanzing_foto_id( 'cubierta-industrial' );
+$pesos = array_filter( array_column( $lonas, 'gramaje' ) );
+$cifras = array(
+	array( '50 m', 'por rollo, más material por tu inversión' ),
+	array( $pesos ? min( $pesos ) . '–' . max( $pesos ) : '540–800', 'g/m² en ' . count( $lonas ) . ' líneas de lona de PVC' ),
+	array( '24', 'colores en lona traslúcida 610' ),
+	array( '1 rollo', 'es suficiente: sin pedido mínimo' ),
+);
+$ventajas = array(
+	array( 'regla', 'Más metros por rollo', 'Rollos completos de 50 m con precio competitivo: más producto por el mismo desembolso.' ),
+	array( 'envio', 'Entrega ágil a todo México', 'Envío por paquetería en convenio que reduce el costo del flete, previa revisión de cobertura.' ),
+	array( 'asesoria', 'Asesoría antes de comprar', 'Te ayudamos a elegir gramaje, paso de luz y color según lo que vas a fabricar.' ),
+	array( 'persona', 'Trato directo', 'Hablas con un asesor que responde casi de inmediato en horario de atención.' ),
+);
 ?>
-<section class="corp-hero">
-	<?php echo hanzing_img( $foto, '100vw', array( 'loading' => 'eager', 'fetchpriority' => 'high', 'alt' => 'Rollos de lona FIERAFLEX de colores' ) ); ?>
-	<div class="corp-hero__scrim"></div>
-	<div class="wrap corp-hero__body">
-		<h1 data-load style="--d:80ms"><?php echo esc_html( hanzing_portada( 'titulo' ) ); ?></h1>
-		<p class="lead" data-load style="--d:200ms"><?php echo esc_html( hanzing_portada( 'texto' ) ); ?></p>
-		<div class="hero__actions" data-load style="--d:300ms">
-			<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp() ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Cotizar por WhatsApp</a>
-			<a class="button button--ghost" href="<?php echo esc_url( get_post_type_archive_link( 'lona' ) ); ?>">Ver las lonas</a>
+<section class="home-hero">
+	<?php echo hanzing_img( $foto, '100vw', array( 'loading' => 'eager', 'fetchpriority' => 'high', 'alt' => 'Cubierta industrial de lona sobre estructura metálica en un patio de maniobras' ) ); ?>
+	<div class="wrap home-hero__wrap">
+		<div class="panel panel--hero" data-load>
+			<h1><?php echo esc_html( hanzing_portada( 'titulo' ) ); ?></h1>
+			<p class="lead"><?php echo esc_html( hanzing_portada( 'texto' ) ); ?></p>
+			<div class="actions">
+				<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp() ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Cotizar por WhatsApp</a>
+				<a class="button button--outline" href="<?php echo esc_url( get_post_type_archive_link( 'lona' ) ); ?>">Ver las lonas</a>
+			</div>
 		</div>
 	</div>
 </section>
 
-<?php get_template_part( 'template-parts/acciones' ); ?>
-
-<?php get_template_part( 'template-parts/rollo50' ); ?>
-
-<section class="section" aria-labelledby="industrias-title">
+<section class="cifras" aria-label="FIERAFLEX en cifras">
 	<div class="wrap">
-		<div class="head">
-			<h2 id="industrias-title" data-reveal>Soluciones por industria</h2>
-			<p class="lead" data-reveal style="--i:1">Cada aplicación pide una lona distinta. Elige la tuya y te mostramos las líneas FIERAFLEX recomendadas.</p>
-		</div>
-		<?php get_template_part( 'template-parts/industrias-grid' ); ?>
+		<dl class="cifras__list">
+			<?php foreach ( $cifras as $n => $c ) : ?>
+				<div data-reveal style="--i:<?php echo (int) $n; ?>"><dt><?php echo esc_html( $c[0] ); ?></dt><dd><?php echo esc_html( $c[1] ); ?></dd></div>
+			<?php endforeach; ?>
+		</dl>
 	</div>
 </section>
 
-<section class="section" aria-labelledby="catalogo-title">
+<section class="section" aria-labelledby="lonas-title">
 	<div class="wrap">
-		<div class="head">
-			<h2 id="catalogo-title" data-reveal>Rollos de lona FIERAFLEX</h2>
-			<p class="lead" data-reveal style="--i:1">Lona de PVC sobre tejido de poliéster de alta resistencia, anti-UV y antimoho. Elige por gramaje y por cuánta luz debe pasar.</p>
+		<div class="bar">
+			<div>
+				<h2 id="lonas-title" data-reveal>Lonas de PVC FIERAFLEX</h2>
+				<p class="lead" data-reveal style="--i:1">Tejido de poliéster de alta resistencia con doble capa de PVC por cada lado. Anti-UV, antibacteriana y antimoho.</p>
+			</div>
+			<a class="arrow-link" href="<?php echo esc_url( get_post_type_archive_link( 'lona' ) ); ?>" data-reveal style="--i:2">Comparar las <?php echo count( $lonas ); ?> lonas <span aria-hidden="true">→</span></a>
 		</div>
-		<ul class="lonas-list">
+		<ul class="cards">
 			<?php foreach ( $lonas as $i => $l ) : ?>
-				<li class="lona-item" data-reveal style="--i:<?php echo (int) $i % 3; ?>">
-					<a href="<?php echo esc_url( $l['url'] ); ?>">
-						<div class="lona-item__img"><?php echo hanzing_img( $l['aplicacion_id'], '(min-width: 900px) 33vw, 100vw', array( 'alt' => $l['aplicacion_alt'] ) ); ?></div>
-						<div class="lona-item__line"><span class="lona-item__name"><?php echo esc_html( $l['nombre'] ); ?></span><span class="lona-item__weight"><?php echo (int) $l['gramaje']; ?> g/m²</span></div>
-						<p class="lona-item__desc"><?php echo esc_html( $l['resumen'] ); ?></p>
-					</a>
-				</li>
+				<?php get_template_part( 'template-parts/lona-card', null, array( 'lona' => $l, 'i' => $i ) ); ?>
 			<?php endforeach; ?>
 		</ul>
 	</div>
 </section>
 
-<?php get_template_part( 'template-parts/otros-productos' ); ?>
+<section class="section section--field" aria-labelledby="industrias-title">
+	<div class="wrap">
+		<div class="bar">
+			<div>
+				<h2 id="industrias-title" data-reveal>Soluciones por industria</h2>
+				<p class="lead" data-reveal style="--i:1">Cada aplicación pide una lona distinta. Elige tu sector y te mostramos las líneas recomendadas.</p>
+			</div>
+			<a class="arrow-link" href="<?php echo esc_url( home_url( '/industrias/' ) ); ?>" data-reveal style="--i:2">Todas las industrias <span aria-hidden="true">→</span></a>
+		</div>
+		<?php get_template_part( 'template-parts/industrias-grid' ); ?>
+	</div>
+</section>
+
+<section class="section ventajas" aria-labelledby="ventajas-title">
+	<div class="wrap ventajas__grid">
+		<figure class="ventajas__foto" data-reveal>
+			<?php echo hanzing_img( hanzing_foto_id( 'rollos-colores' ), '(min-width: 900px) 45vw, 100vw', array( 'alt' => 'Rollos de lona FIERAFLEX de colores' ) ); ?>
+		</figure>
+		<div>
+			<h2 id="ventajas-title" data-reveal>Por qué FIERAFLEX</h2>
+			<p class="lead" data-reveal style="--i:1">La lona adecuada para cada proyecto, con atención que sí acompaña.</p>
+			<ul class="ventajas__list">
+				<?php foreach ( $ventajas as $n => $v ) : ?>
+					<li data-reveal style="--i:<?php echo (int) $n; ?>">
+						<span class="ventajas__icon"><?php echo hanzing_icon( $v[0] ); ?></span>
+						<div><h3><?php echo esc_html( $v[1] ); ?></h3><p><?php echo esc_html( $v[2] ); ?></p></div>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</div>
+</section>
 
 <?php get_template_part( 'template-parts/escala' ); ?>
 
-<?php get_template_part( 'template-parts/capas' ); ?>
-
-<?php get_template_part( 'template-parts/luz' ); ?>
-
-<?php get_template_part( 'template-parts/confianza' ); ?>
+<?php get_template_part( 'template-parts/descargas' ); ?>
 
 <?php get_template_part( 'template-parts/empresa' ); ?>
 

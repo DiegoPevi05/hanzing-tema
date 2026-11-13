@@ -39,6 +39,22 @@
 			}
 		} );
 	}
+	/* Submenús de Lonas e Industrias: botón en táctil y teclado; en escritorio también abren al pasar el puntero (CSS). */
+	const subs = document.querySelectorAll( '.nav__toggle' );
+	const closeSubs = ( except ) => subs.forEach( ( b ) => { if ( b !== except ) b.setAttribute( 'aria-expanded', 'false' ); } );
+	subs.forEach( ( btn ) => {
+		btn.addEventListener( 'click', () => {
+			const open = btn.getAttribute( 'aria-expanded' ) !== 'true';
+			closeSubs( btn );
+			btn.setAttribute( 'aria-expanded', String( open ) );
+		} );
+	} );
+	document.addEventListener( 'click', ( e ) => { if ( ! e.target.closest( '.has-sub' ) ) closeSubs(); } );
+	document.addEventListener( 'keydown', ( e ) => {
+		const abierto = document.querySelector( '.nav__toggle[aria-expanded="true"]' );
+		if ( e.key === 'Escape' && abierto ) { closeSubs(); abierto.focus(); }
+	} );
+
 	if ( header ) {
 		const onScroll = () => header.classList.toggle( 'is-scrolled', window.scrollY > 8 );
 		onScroll();

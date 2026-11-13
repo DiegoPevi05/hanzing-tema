@@ -20,6 +20,7 @@ $wa = preg_replace( '/\D/', '', hanzing_contacto( 'whatsapp' ) );
 					</select>
 				</div>
 				<div class="field full" data-reveal style="--i:4"><label for="mensaje">Tu proyecto</label><textarea id="mensaje" name="mensaje" rows="5" required placeholder="Ej. 2 rollos de Traslúcida 610 en azul para toldos."></textarea></div>
+				<p class="form__nota full">Al enviar, tus datos se usan solo para cotizar, según nuestra <a class="link" href="<?php echo esc_url( home_url( '/politica-de-privacidad/' ) ); ?>">política de privacidad</a>.</p>
 				<p class="form__error full" role="alert" hidden>Escribe tu nombre y cuéntanos tu proyecto para poder cotizar.</p>
 				<div class="form__actions full" data-reveal style="--i:5">
 					<button class="button button--accent" type="submit"><?php echo hanzing_icon( 'whatsapp' ); ?> Enviar por WhatsApp</button>
