@@ -191,7 +191,7 @@ update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $page_ids['inicio'] );
 
 /* Contenido editable de las páginas, si el tema lo trae. */
-$patterns = get_stylesheet_directory() . '/patterns-content';
+$patterns = get_template_directory() . '/patterns-content';
 foreach ( array( 'servicios', 'nosotros', 'contacto', 'terminos-y-condiciones', 'politica-de-privacidad' ) as $slug ) {
 	if ( file_exists( "$patterns/$slug.html" ) ) {
 		$html = str_replace( array_map( fn( $k ) => "{{foto:$k}}", array_keys( $ids ) ), array_map( 'wp_get_attachment_url', $ids ), file_get_contents( "$patterns/$slug.html" ) );

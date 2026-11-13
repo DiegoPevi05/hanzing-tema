@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Hanzing Animado: animaciones corporativas sobre el tema Hanzing.
+   Regla general: el estado final es el estilo base; el estado inicial solo existe
+   con JavaScript y sin "reducir movimiento". Colores: azul noche, acero y naranja.
+   ========================================================================== */
+
+/* ---------- Héroe: foto en movimiento lento, panel que se descubre, titular por palabras ---------- */
+.a-hero h1 .w { display: inline-block; overflow: clip; vertical-align: top; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.a-hero h1 .w > span { display: inline-block; }
+.a-hero__filete { width: 120px; height: 6px; overflow: visible; }
+.a-hero__filete line { stroke: var(--accent); stroke-width: 6; stroke-dasharray: 1; }
+@media (prefers-reduced-motion: no-preference) {
+	.js .a-hero > img { animation: a-kenburns 26s ease-in-out infinite alternate; }
+	.js .a-hero__panel { clip-path: inset(0 100% 0 0); animation: a-descubrir 900ms var(--ease-expo) 100ms forwards; }
+	.js .a-hero h1 .w > span { transform: translateY(110%); animation: a-subir 800ms var(--ease-expo) forwards; animation-delay: calc(350ms + var(--w) * 70ms); }
+	.js .a-hero__filete line { stroke-dashoffset: 1; animation: a-trazo 700ms var(--ease-out) 800ms forwards; }
+	.js .a-hero__in { opacity: 0; transform: translateY(12px); animation: rise 700ms var(--ease-out) var(--d, 0ms) forwards; }
+}
+@keyframes a-kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
+@keyframes a-descubrir { to { clip-path: inset(0); } }
+@keyframes a-subir { to { transform: none; } }
+@keyframes a-trazo { to { stroke-dashoffset: 0; } }
+
+/* ---------- Cortinas: las fotos se descubren al entrar ---------- */
+.a-cortinas .card__img, .a-cortinas .sector__img, .a-cortina { position: relative; overflow: clip; }
+.a-cortina video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+	.js .a-cortinas .card__img::after, .js .a-cortinas .sector__img::after, .js .a-cortina::after { content: ''; position: absolute; inset: 0; background: var(--field-deep); transform-origin: right; transition: transform 900ms var(--ease-expo); transition-delay: calc(var(--i, 0) * 90ms + 100ms); }
+	.js .section--field.a-cortinas .sector__img::after { background: var(--accent); }
+	.js .a-cortinas .is-in .card__img::after, .js .a-cortinas .is-in .sector__img::after, .js .a-cortina.is-in::after { transform: scaleX(0); }
+	.js .a-cortinas [data-reveal] :is(.card__img, .sector__img) img { transform: scale(1.12); transition: transform 1400ms var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms + 100ms); }
+	.js .a-cortinas .is-in :is(.card__img, .sector__img) img { transform: none; }
+}
+
+/* ---------- Rollo de 50 m ---------- */
+.a-regla__top { display: grid; gap: 1.5rem 4rem; align-items: end; }
+.a-regla__copy { display: grid; gap: 1rem; }
+.a-regla__copy .lead { color: var(--muted); max-width: 52ch; }
+.a-regla__cifra { font-size: clamp(4rem, 2.5rem + 7vw, 8.5rem); font-weight: 600; line-height: 0.9; letter-spacing: -0.03em; color: var(--hz-blue); font-variant-numeric: tabular-nums; }
+@media (min-width: 900px) { .a-regla__top { grid-template-columns: 1.4fr auto; } }
+.a-regla__svg { width: 100%; height: auto; margin-top: clamp(1.5rem, 1rem + 2vw, 3rem); overflow: visible; }
+.a-regla__pista { fill: var(--steel-2); }
+.a-regla__lona { fill: var(--accent); transform-box: fill-box; transform-origin: left center; }
+.a-regla__rollo { transform: translateX(1100px); }
+.a-regla__giro { transform-box: fill-box; transform-origin: center; }
+.a-regla__giro circle { fill: var(--field); }
+.a-regla__giro .a-regla__nucleo { fill: var(--steel); }
+.a-regla__vuelta { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; }
+.a-regla__marcas line { stroke: var(--muted); stroke-width: 2; }
+.a-regla__marcas text { font: 600 20px var(--font); fill: var(--muted); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: no-preference) {
+	.js .a-regla__lona, .js .a-regla__rollo, .js .a-regla__giro { transition: transform 1800ms cubic-bezier(0.25, 1, 0.5, 1); }
+	.js .a-regla__svg:not(.is-in) .a-regla__lona { transform: scaleX(0); }
+	.js .a-regla__svg:not(.is-in) .a-regla__rollo { transform: translateX(0); }
+	.js .a-regla__svg:not(.is-in) .a-regla__giro { transform: rotate(-1080deg); }
+	.js .a-regla__marcas g { transition: opacity 300ms var(--ease-out); transition-delay: calc(var(--m) * 14ms); }
+	.js .a-regla__svg:not(.is-in) .a-regla__marcas g { opacity: 0; }
+}
+
+/* ---------- Mapa de envíos ---------- */
+.a-mapa__grid { display: grid; gap: 2.5rem 4rem; align-items: center; }
+.a-mapa__copy { display: grid; gap: 1.5rem; justify-items: start; }
+.a-mapa__copy .lead { color: var(--field-muted); max-width: 46ch; }
+.a-mapa__fig { margin: 0; }
+.a-mapa__fig svg { width: 100%; height: auto; overflow: visible; }
+.a-mapa__fig figcaption { margin-top: 0.5rem; font-size: var(--step-small); color: var(--field-muted); }
+.a-mapa__pais { fill: rgba(255, 255, 255, 0.06); stroke: rgba(255, 255, 255, 0.38); stroke-width: 1.3; stroke-linejoin: round; }
+.a-mapa__ruta { fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-dasharray: 1; }
+.a-mapa__destino circle { fill: #fff; transform-box: fill-box; transform-origin: center; }
+.a-mapa__destino text { font: 400 17px var(--font); fill: var(--field-muted); }
+.a-mapa__origen circle { fill: var(--accent); }
+.a-mapa__origen text { font: 600 20px var(--font); fill: #fff; }
+.a-mapa__pulso { transform-box: fill-box; transform-origin: center; opacity: 0; }
+@media (min-width: 1000px) { .a-mapa__grid { grid-template-columns: 1fr 1.5fr; } }
+@media (max-width: 699px) { .a-mapa__destino text { display: none; } .a-mapa__origen text { font-size: 34px; } .a-mapa__destino circle { r: 8; } .a-mapa__ruta { stroke-width: 3; } }
+@media (prefers-reduced-motion: no-preference) {
+	.js .a-mapa__pais { transition: opacity 900ms var(--ease-out); }
+	.js .a-mapa__ruta { transition: stroke-dashoffset 1100ms var(--ease-out); transition-delay: calc(400ms + var(--n) * 110ms); }
+	.js .a-mapa__destino circle { transition: transform 500ms var(--ease-expo), opacity 300ms var(--ease-out); transition-delay: calc(1300ms + var(--n) * 110ms); }
+	.js .a-mapa__destino text { transition: opacity 500ms var(--ease-out); transition-delay: calc(1400ms + var(--n) * 110ms); }
+	.js .a-mapa__fig:not(.is-in) .a-mapa__pais { opacity: 0; }
+	.js .a-mapa__fig:not(.is-in) .a-mapa__ruta { stroke-dashoffset: 1; }
+	.js .a-mapa__fig:not(.is-in) .a-mapa__destino circle { transform: scale(0.5); opacity: 0; }
+	.js .a-mapa__fig:not(.is-in) .a-mapa__destino text { opacity: 0; }
+	.js .a-mapa__fig.is-in .a-mapa__pulso { animation: a-pulso 2600ms var(--ease-out) 600ms infinite; }
+}
+@keyframes a-pulso { from { opacity: 0.55; transform: scale(1); } to { opacity: 0; transform: scale(4); } }
+
+/* ---------- Cómo comprar ---------- */
+.a-proceso__pista { position: relative; }
+.a-proceso__linea { display: none; }
+.a-proceso__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.25rem var(--gutter); }
+.a-proceso__list li { display: grid; gap: 0.6rem; align-content: start; justify-items: start; }
+.a-proceso__icon { position: relative; display: grid; place-items: center; width: 76px; height: 76px; margin-bottom: 0.6rem; border-radius: 50%; background: var(--steel); }
+.a-proceso__icon svg { width: 40px; height: 40px; }
+.a-proceso__icon path { fill: none; stroke: var(--hz-blue); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; }
+.a-proceso__list p { color: var(--muted); font-size: var(--step-small); max-width: 30ch; }
+@media (min-width: 600px) { .a-proceso__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) {
+	.a-proceso__list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	.a-proceso__linea { display: block; position: absolute; left: 38px; top: 36px; width: calc(75% + 0.75 * var(--gutter)); height: 4px; }
+	.a-proceso__linea line { stroke: var(--accent); stroke-width: 4; stroke-dasharray: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+	.js .a-proceso__linea line { transition: stroke-dashoffset 1800ms var(--ease-in-out) 200ms; }
+	.js .a-proceso__icon path { transition: stroke-dashoffset 900ms var(--ease-out); transition-delay: calc(200ms + var(--n) * 400ms); }
+	.js .a-proceso__list :is(h3, p) { transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-out); transition-delay: calc(450ms + var(--n) * 400ms); }
+	.js .a-proceso__pista:not(.is-in) .a-proceso__linea line { stroke-dashoffset: 1; }
+	.js .a-proceso__pista:not(.is-in) .a-proceso__icon path { stroke-dashoffset: 1; }
+	.js .a-proceso__pista:not(.is-in) .a-proceso__list :is(h3, p) { opacity: 0; transform: translateY(10px); }
+}
+
+/* ---------- Iconos de ventajas: entran con un pequeño giro ---------- */
+@media (prefers-reduced-motion: no-preference) {
+	.js .a-ventajas [data-reveal] .ventajas__icon svg { transform: scale(0.6) rotate(-12deg); transition: transform 700ms var(--ease-expo); transition-delay: calc(var(--i, 0) * var(--stagger) + 150ms); }
+	.js .a-ventajas .is-in .ventajas__icon svg { transform: none; }
+}

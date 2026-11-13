@@ -6,7 +6,7 @@
  */
 get_header();
 $lonas = hanzing_lonas();
-$foto  = (int) get_theme_mod( 'hz_portada_foto1' ) ?: hanzing_foto_id( 'cubierta-industrial' );
+$foto  = (int) get_theme_mod( 'hz_portada_foto1' ) ?: hanzing_foto_id( 'rollos-colores' );
 $pesos = array_filter( array_column( $lonas, 'gramaje' ) );
 $cifras = array(
 	array( '50 m', 'por rollo, más material por tu inversión' ),
@@ -22,7 +22,7 @@ $ventajas = array(
 );
 ?>
 <section class="home-hero">
-	<?php echo hanzing_img( $foto, '100vw', array( 'loading' => 'eager', 'fetchpriority' => 'high', 'alt' => 'Cubierta industrial de lona sobre estructura metálica en un patio de maniobras' ) ); ?>
+	<?php echo hanzing_img( $foto, '100vw', array( 'loading' => 'eager', 'fetchpriority' => 'high', 'alt' => 'Rollos de lona FIERAFLEX de varios colores' ) ); ?>
 	<div class="wrap home-hero__wrap">
 		<div class="panel panel--hero" data-load>
 			<h1><?php echo esc_html( hanzing_portada( 'titulo' ) ); ?></h1>
@@ -78,7 +78,7 @@ $ventajas = array(
 <section class="section ventajas" aria-labelledby="ventajas-title">
 	<div class="wrap ventajas__grid">
 		<figure class="ventajas__foto" data-reveal>
-			<?php echo hanzing_img( hanzing_foto_id( 'rollos-colores' ), '(min-width: 900px) 45vw, 100vw', array( 'alt' => 'Rollos de lona FIERAFLEX de colores' ) ); ?>
+			<?php echo hanzing_img( hanzing_foto_id( 'equipo' ), '(min-width: 900px) 45vw, 100vw', array( 'alt' => 'Equipo de Grupo Hanzing frente a los anaqueles de rollos de lona' ) ); ?>
 		</figure>
 		<div>
 			<h2 id="ventajas-title" data-reveal>Por qué FIERAFLEX</h2>

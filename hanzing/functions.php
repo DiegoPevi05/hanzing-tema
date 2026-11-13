@@ -32,8 +32,8 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	$uri = get_stylesheet_directory_uri();
-	$dir = get_stylesheet_directory();
+	$uri = get_template_directory_uri();
+	$dir = get_template_directory();
 	wp_enqueue_style( 'hanzing-fonts', "$uri/assets/css/fonts.css", array(), filemtime( "$dir/assets/css/fonts.css" ) );
 	wp_enqueue_style( 'hanzing', "$uri/assets/css/main.css", array(), filemtime( "$dir/assets/css/main.css" ) );
 	wp_enqueue_script( 'hanzing', "$uri/assets/js/main.js", array(), filemtime( "$dir/assets/js/main.js" ), array( 'strategy' => 'defer', 'in_footer' => true ) );
@@ -43,7 +43,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
 add_action( 'wp_head', function () {
 	echo "<script>document.documentElement.classList.add('js')</script>\n";
-	echo '<link rel="preload" href="' . esc_url( get_stylesheet_directory_uri() . '/assets/fonts/source-sans-3-latin-wght-normal.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
+	echo '<link rel="preload" href="' . esc_url( get_template_directory_uri() . '/assets/fonts/source-sans-3-latin-wght-normal.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	echo '<meta name="theme-color" content="#ffffff">' . "\n";
 }, 1 );
 

@@ -66,6 +66,7 @@ $simples    = array( 'servicios' => 'Servicios', 'nosotros' => 'Empresa', 'conta
 			</ul>
 			<a class="button button--accent nav__cta" href="<?php echo esc_url( hanzing_whatsapp() ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Cotizar</a>
 		</nav>
+		<a class="wa-btn" href="<?php echo esc_url( hanzing_whatsapp() ); ?>" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp"><?php echo hanzing_icon( 'whatsapp' ); ?></a>
 		<button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
 			<span class="menu-btn__bars" aria-hidden="true"><span></span><span></span></span>
 			<span class="visually-hidden">Menú</span>
