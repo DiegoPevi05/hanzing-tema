@@ -25,8 +25,8 @@ ob_start();
 </div>
 <?php
 get_template_part( 'template-parts/page-hero', null, array(
-	'foto'   => $l['aplicacion_id'],
-	'alt'    => $l['aplicacion_alt'],
+	'foto'   => $l['muestra_id'] ?: $l['aplicacion_id'],
+	'alt'    => $l['muestra_id'] ? 'Lona ' . $l['nombre'] . ' FIERAFLEX, muestra del material' : $l['aplicacion_alt'],
 	'titulo' => 'Lona ' . $l['nombre'],
 	'lead'   => $l['resumen'],
 	'crumbs' => array( array( 'Lonas', get_post_type_archive_link( 'lona' ) ) ),
@@ -38,7 +38,12 @@ get_template_part( 'template-parts/page-hero', null, array(
 	<div class="wrap ficha">
 		<div class="ficha__head">
 			<h2 id="ficha-title" data-reveal>Ficha técnica</h2>
-			<?php echo $l['muestra_id'] ? wp_get_attachment_image( $l['muestra_id'], 'full', false, array( 'class' => 'ficha__swatch', 'alt' => 'Muestra de lona ' . $l['nombre'], 'loading' => 'lazy', 'sizes' => '260px' ) ) : ''; ?>
+			<?php if ( $l['aplicacion_id'] ) : ?>
+				<figure class="ficha__app" data-reveal>
+					<?php echo hanzing_img( $l['aplicacion_id'], '(min-width: 900px) 34vw, 100vw', array( 'alt' => $l['aplicacion_alt'] ) ); ?>
+					<figcaption>Ejemplo de aplicación: <?php echo esc_html( $l['aplicacion_alt'] ); ?>.</figcaption>
+				</figure>
+			<?php endif; ?>
 			<div class="prose soft" data-reveal style="--i:1"><?php the_content(); ?></div>
 			<?php if ( $l['ficha_url'] ) : ?>
 				<a class="button button--field" href="<?php echo esc_url( $l['ficha_url'] ); ?>" target="_blank" rel="noopener" download data-reveal style="--i:2"><?php echo hanzing_icon( 'pdf' ); ?> Descargar ficha técnica</a>

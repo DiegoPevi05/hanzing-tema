@@ -680,3 +680,8 @@ button { font: inherit; }
 .legal .prose li + li { margin-top: 0.5rem; }
 .form__nota { color: var(--muted); font-size: var(--step-small); }
 
+
+/* Ficha de lona: foto de aplicación en el cuerpo (el héroe muestra el material) */
+.ficha__app { margin: 0; }
+.ficha__app img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.ficha__app figcaption { margin-top: 0.5rem; font-size: var(--step-small); color: var(--muted); }

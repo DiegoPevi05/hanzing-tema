@@ -84,7 +84,7 @@ $lonas = array(
 		'excerpt' => 'Hecha para brincolines, inflables y lona camionera.',
 		'content' => 'Lona resistente y flexible diseñada para brincolines e inflables. Soporta fricción, peso, uso continuo y condiciones exteriores. También se usa como lona camionera.',
 		'usos' => "Brincolines\nInflables\nLona camionera", 'colores' => '',
-		'muestra' => array( 'brincolin.jpg', 'Brincolín inflable fabricado con lona Brincolinera 610' ),
+		'muestra' => array( 'muestra-amarilla.jpg', 'Lona Brincolinera 610, muestra del material en amarillo' ),
 		'app' => array( 'lona-camionera.jpg', 'Camión con caja cubierta de lona amarilla' ),
 	),
 	array(
@@ -100,7 +100,7 @@ $lonas = array(
 		'excerpt' => 'Máxima cobertura para naves avícolas y proyectos arquitectónicos.',
 		'content' => 'Nuestra lona más pesada. Totalmente opaca, pensada para proyectos avícolas, arquitectónicos y cualquier aplicación que requiera máxima cobertura y resistencia a la tensión.',
 		'usos' => "Naves avícolas\nProyectos arquitectónicos\nCubiertas industriales", 'colores' => '',
-		'muestra' => array( 'lona-blanca.jpg', 'Muestra de lona Black out 800 en blanco' ),
+		'muestra' => array( 'muestra-gris.jpg', 'Lona Black out 800, muestra del material' ),
 		'app' => array( 'nave-agricola.jpg', 'Nave agrícola techada con lona en un campo de cultivo' ),
 	),
 );

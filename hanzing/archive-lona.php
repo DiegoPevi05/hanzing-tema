@@ -35,7 +35,7 @@ get_template_part( 'template-parts/page-hero', null, array(
 				<tbody>
 					<?php foreach ( $lonas as $l ) : ?>
 						<tr>
-							<th scope="row"><a class="compare__lona" href="<?php echo esc_url( $l['url'] ); ?>"><?php echo hanzing_img( $l['aplicacion_id'], '176px', array( 'alt' => '' ) ); ?><span class="link"><?php echo esc_html( $l['nombre'] ); ?></span></a></th>
+							<th scope="row"><a class="compare__lona" href="<?php echo esc_url( $l['url'] ); ?>"><?php echo hanzing_img( $l['muestra_id'] ?: $l['aplicacion_id'], '176px', array( 'alt' => '' ) ); ?><span class="link"><?php echo esc_html( $l['nombre'] ); ?></span></a></th>
 							<td class="num" data-label="Gramaje"><?php echo (int) $l['gramaje']; ?> g/m²</td>
 							<td data-label="Paso de luz"><?php echo esc_html( $l['luz'] ?: 'Consultar' ); ?></td>
 							<td data-label="Ideal para"><?php echo esc_html( implode( ', ', $l['usos'] ) ); ?></td>

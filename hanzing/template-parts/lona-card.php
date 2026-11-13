@@ -4,6 +4,8 @@
  * $args: lona (de hanzing_lona()), i (índice para el escalonado).
  */
 $l      = $args['lona'];
+$foto   = $l['muestra_id'] ?: $l['aplicacion_id'];
+$alt    = $l['muestra_id'] ? 'Lona ' . $l['nombre'] . ' FIERAFLEX, muestra del material' : $l['aplicacion_alt'];
 $esp    = '';
 foreach ( $l['specs'] as $sp ) {
 	if ( 0 === stripos( $sp['nombre'], 'Espesor' ) ) {
@@ -18,7 +20,7 @@ $datos = array_filter( array(
 ?>
 <li class="card" data-reveal style="--i:<?php echo (int) ( $args['i'] ?? 0 ) % 3; ?>">
 	<a class="card__link" href="<?php echo esc_url( $l['url'] ); ?>">
-		<div class="card__img"><?php echo hanzing_img( $l['aplicacion_id'], '(min-width: 1000px) 30vw, (min-width: 600px) 50vw, 100vw', array( 'alt' => $l['aplicacion_alt'] ) ); ?></div>
+		<div class="card__img"><?php echo hanzing_img( $foto, '(min-width: 1000px) 30vw, (min-width: 600px) 50vw, 100vw', array( 'alt' => $alt ) ); ?></div>
 		<div class="card__body">
 			<div class="card__title">
 				<h3><?php echo esc_html( $l['nombre'] ); ?></h3>
