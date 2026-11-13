@@ -7,8 +7,8 @@ defined( 'ABSPATH' ) || exit;
 
 function hanzing_portada( $key ) {
 	$defaults = array(
-		'titulo' => 'Lona de PVC para la industria mexicana',
-		'texto'  => 'Grupo Hanzing vende y distribuye desde León, Guanajuato, la lona Fieraflex: seis líneas de 540 a 800 g/m² para carpas, inflables, transporte, toldos y cubiertas.',
+		'titulo' => 'La lona adecuada para cada proyecto',
+		'texto'  => 'Rollos de lona de PVC de 50 metros para toldos, velarias, carpas, domos e inflables. Sin pedido mínimo y con envío a todo México.',
 	);
 	return get_theme_mod( 'hz_portada_' . $key, $defaults[ $key ] ?? '' );
 }

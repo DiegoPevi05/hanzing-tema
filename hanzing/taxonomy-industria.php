@@ -11,7 +11,7 @@ $ind  = hanzing_industria( $term );
 		<h1 data-load style="--d:100ms"><?php echo esc_html( $ind['nombre'] ); ?></h1>
 		<?php if ( $ind['texto'] ) : ?><p class="lead" data-load style="--d:220ms"><?php echo esc_html( $ind['texto'] ); ?></p><?php endif; ?>
 		<div class="hero__actions" data-load style="--d:320ms">
-			<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp( 'Hola, busco lona Fieraflex para ' . mb_strtolower( $ind['nombre'] ) . '.' ) ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Cotizar para <?php echo esc_html( mb_strtolower( $ind['nombre'] ) ); ?></a>
+			<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp( 'Hola, busco lona FIERAFLEX para ' . mb_strtolower( $ind['nombre'] ) . '.' ) ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Cotizar para <?php echo esc_html( mb_strtolower( $ind['nombre'] ) ); ?></a>
 		</div>
 	</div>
 </section>
@@ -19,7 +19,7 @@ $ind  = hanzing_industria( $term );
 <section class="section" aria-labelledby="recomendadas-title">
 	<div class="wrap">
 		<div class="head">
-			<h2 id="recomendadas-title" data-reveal>Lonas Fieraflex recomendadas</h2>
+			<h2 id="recomendadas-title" data-reveal>Lonas FIERAFLEX recomendadas</h2>
 			<p class="lead" data-reveal style="--i:1">Las líneas que más se usan para <?php echo esc_html( mb_strtolower( $ind['nombre'] ) ); ?>. Si tu proyecto es distinto, te asesoramos.</p>
 		</div>
 		<?php if ( $ind['lonas'] ) : ?>

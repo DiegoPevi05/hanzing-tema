@@ -11,8 +11,9 @@ function hanzing_contacto_defaults() {
 		'whatsapp'   => '524771111758',
 		'email'      => 'ventas01@grupohanzing.com',
 		'email2'     => 'marketing01@grupohanzing.com',
-		'direccion'  => "Fracc. Industrial Delta\nLeón, Guanajuato",
-		'mapa'       => 'https://www.google.com/maps/search/?api=1&query=Industrial+Delta+Le%C3%B3n+Guanajuato',
+		// Por seguridad no se publica la dirección del almacén: solo una referencia de zona.
+		'direccion'  => 'Zona industrial, León, Guanajuato',
+		'mapa'       => '',
 		'horario'    => "Lunes a viernes | 9:00 a 18:00\nSábado | 9:00 a 13:00",
 		'facebook'   => 'https://www.facebook.com/han.zing.267169',
 		'instagram'  => 'https://www.instagram.com/lonasfieraflex/',
@@ -27,7 +28,7 @@ function hanzing_contacto( $key ) {
 }
 
 /** Enlace de WhatsApp con mensaje. */
-function hanzing_whatsapp( $mensaje = 'Hola, quiero cotizar lona Fieraflex.' ) {
+function hanzing_whatsapp( $mensaje = 'Hola, quiero cotizar lona FIERAFLEX.' ) {
 	return 'https://wa.me/' . preg_replace( '/\D/', '', hanzing_contacto( 'whatsapp' ) ) . '?text=' . rawurlencode( $mensaje );
 }
 
@@ -57,8 +58,8 @@ add_action( 'customize_register', function ( WP_Customize_Manager $wp ) {
 		'whatsapp'   => array( 'WhatsApp (con lada de país, solo números)', 'text' ),
 		'email'      => array( 'Correo de ventas', 'email' ),
 		'email2'     => array( 'Correo secundario', 'email' ),
-		'direccion'  => array( 'Dirección', 'textarea' ),
-		'mapa'       => array( 'Enlace de Google Maps', 'url' ),
+		'direccion'  => array( 'Referencia de ubicación (no poner la dirección exacta del almacén)', 'textarea' ),
+		'mapa'       => array( 'Enlace de Google Maps (vacío = no se muestra)', 'url' ),
 		'horario'    => array( 'Horario (una línea por día: días | horas)', 'textarea' ),
 		'facebook'   => array( 'Facebook', 'url' ),
 		'instagram'  => array( 'Instagram', 'url' ),

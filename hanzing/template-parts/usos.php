@@ -4,7 +4,7 @@
 <section class="section" aria-labelledby="usos-title">
 	<div class="wrap">
 		<div class="head">
-			<h2 id="usos-title" data-reveal>Dónde trabaja una lona Fieraflex</h2>
+			<h2 id="usos-title" data-reveal>Dónde trabaja una lona FIERAFLEX</h2>
 			<p class="lead" data-reveal style="--i:1">La lona que más nos piden para cada uso.</p>
 		</div>
 		<div class="apps">

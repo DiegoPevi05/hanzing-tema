@@ -6,19 +6,12 @@
 			$hz = get_theme_mod( 'custom_logo' );
 			echo $hz ? wp_get_attachment_image( $hz, 'full', false, array( 'alt' => 'Grupo Hanzing' ) ) : '';
 			?>
-			<p>Empresa mexicana dedicada a la venta y distribución de lonas de PVC de alta resistencia para aplicaciones industriales, comerciales, arquitectónicas y recreativas.</p>
-		</div>
-		<div class="site-footer__flagship">
-			<?php
-			$ff = (int) get_option( 'hanzing_logo_fieraflex' );
-			echo $ff ? wp_get_attachment_image( $ff, 'full', false, array( 'alt' => 'Fieraflex' ) ) : '';
-			?>
-			<p><strong>Fieraflex</strong>, el producto insignia de Grupo Hanzing.</p>
+			<p><strong>FIERAFLEX, una marca de Grupo Hanzing.</strong> Rollos de lona de PVC para toldos, velarias, carpas, domos, inflables e industria, con envío a todo México.</p>
 		</div>
 	</div>
 	<div class="wrap site-footer__grid">
 		<div>
-			<h2>Lonas Fieraflex</h2>
+			<h2>Lonas FIERAFLEX</h2>
 			<ul>
 				<?php foreach ( hanzing_lonas() as $l ) : ?>
 					<li><a href="<?php echo esc_url( $l['url'] ); ?>"><?php echo esc_html( $l['nombre'] ); ?></a></li>
@@ -38,7 +31,7 @@
 			<ul>
 				<li><a href="<?php echo esc_url( hanzing_telefono_href() ); ?>"><?php echo esc_html( hanzing_contacto( 'telefono' ) ); ?></a></li>
 				<li><a href="mailto:<?php echo esc_attr( hanzing_contacto( 'email' ) ); ?>"><?php echo esc_html( hanzing_contacto( 'email' ) ); ?></a></li>
-				<li><a href="<?php echo esc_url( hanzing_contacto( 'mapa' ) ); ?>" target="_blank" rel="noopener"><?php echo nl2br( esc_html( hanzing_contacto( 'direccion' ) ) ); ?></a></li>
+				<li><?php echo nl2br( esc_html( hanzing_contacto( 'direccion' ) ) ); ?></li>
 			</ul>
 		</div>
 		<div>
@@ -61,7 +54,8 @@
 	<div class="site-footer__legal">
 		<div class="wrap site-footer__legal-row">
 			<span>© <?php echo esc_html( wp_date( 'Y' ) ); ?> Grupo Hanzing. Todos los derechos reservados.</span>
-			<span>Fieraflex es una marca de Grupo Hanzing.</span>
+			<span>FIERAFLEX es una marca de Grupo Hanzing.</span>
+			<a class="site-footer__credit" href="https://medialitica.pe" target="_blank" rel="noopener noreferrer">Web desarrollada por Medialitica.pe</a>
 		</div>
 	</div>
 </footer>

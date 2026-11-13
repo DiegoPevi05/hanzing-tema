@@ -11,7 +11,7 @@ if ( ! $lonas ) {
 }
 
 /* Orillo impreso, como el de un rollo real. */
-$orillo = str_repeat( 'Fieraflex   Lona de PVC   Grupo Hanzing   León, Gto.      ', 6 );
+$orillo = str_repeat( 'FIERAFLEX   Lona de PVC   Rollo de 50 m   Grupo Hanzing      ', 6 );
 
 /* Escritorio: dos hileras de 232 de alto; ancho = gramaje × 136 / 232. */
 $escala  = 136 / 232;
@@ -105,7 +105,7 @@ $desde  = array( array( -260, -120, -9 ), array( 220, -160, 8 ), array( 160, 180
 
 		<div class="marker__cta" data-reveal>
 			<p class="lead">¿No sabes cuál cortar? Te asesoramos por WhatsApp.</p>
-			<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp( 'Hola, necesito asesoría para elegir lona Fieraflex.' ) ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Pedir asesoría</a>
+			<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp( 'Hola, necesito asesoría para elegir lona FIERAFLEX.' ) ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Pedir asesoría</a>
 		</div>
 	</div>
 </section>

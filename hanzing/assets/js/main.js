@@ -176,6 +176,23 @@
 	/* ---------- Equipo: la cortina azul se retira y descubre la foto ---------- */
 	onEnter( document.querySelectorAll( '.equipo__foto' ), ( el ) => el.classList.add( 'is-in' ), { threshold: 0.35 } );
 
+	/* ---------- Regla de 50 m y vista explotada de las capas ---------- */
+	onEnter( document.querySelectorAll( '[data-regla], [data-capas]' ), ( el ) => el.classList.add( 'is-in' ), { threshold: 0.4 } );
+	document.querySelectorAll( '[data-cuenta]' ).forEach( ( el ) => {
+		const fin = parseInt( el.dataset.cuenta, 10 );
+		if ( reduce || ! fin ) return;
+		el.textContent = '0';
+		onEnter( [ el ], () => {
+			const t0 = performance.now();
+			const paso = ( t ) => {
+				const k = Math.min( 1, ( t - t0 ) / 1800 );
+				el.textContent = String( Math.round( fin * ( 1 - Math.pow( 1 - k, 4 ) ) ) );
+				if ( k < 1 ) requestAnimationFrame( paso );
+			};
+			requestAnimationFrame( paso );
+		}, { threshold: 0.6 } );
+	} );
+
 	/* ---------- Videos en bucle: solo corren en pantalla y sin movimiento reducido ---------- */
 	document.querySelectorAll( 'video[data-autoplay]' ).forEach( ( v ) => {
 		if ( reduce ) return; // con movimiento reducido se queda el cuadro de portada
@@ -192,11 +209,41 @@
 		btn.addEventListener( 'click', () => {
 			const iframe = document.createElement( 'iframe' );
 			iframe.src = `https://www.youtube-nocookie.com/embed/${ el.dataset.yt }?autoplay=1`;
-			iframe.title = 'Video de Lonas Fieraflex';
+			iframe.title = 'Video de Lonas FIERAFLEX';
 			iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
 			iframe.allowFullscreen = true;
 			el.replaceChildren( iframe );
 		} );
+	} );
+
+	/* ---------- Medición para Google Ads / Analytics ----------
+	   Cada clic a WhatsApp, teléfono o correo y cada envío del formulario se manda a
+	   dataLayer (Google Tag Manager) y, si hay etiqueta de Google, como evento de gtag.
+	   La conversión de Google Ads se configura en Apariencia › Personalizar › Medición. */
+	const conv = window.hzMedicion || {};
+	function medir( accion, ubicacion, producto ) {
+		const datos = { accion, ubicacion, producto: producto || '', pagina: location.pathname };
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push( Object.assign( { event: 'hz_contacto' }, datos ) );
+		if ( typeof window.gtag === 'function' ) {
+			window.gtag( 'event', accion, datos );
+			const envio = accion.indexOf( 'whatsapp' ) > -1 ? conv.whatsapp : conv.contacto;
+			if ( envio ) window.gtag( 'event', 'conversion', { send_to: envio } );
+		}
+	}
+	function zona( el ) {
+		if ( el.closest( '.wa-float' ) ) return 'flotante';
+		if ( el.closest( '.site-header, .topbar' ) ) return 'cabecera';
+		if ( el.closest( '.site-footer' ) ) return 'pie';
+		const sec = el.closest( 'section' );
+		return sec ? ( sec.getAttribute( 'aria-labelledby' ) || sec.className.split( ' ' )[ 0 ] || 'seccion' ).replace( /-title$/, '' ) : 'pagina';
+	}
+	document.addEventListener( 'click', ( e ) => {
+		const a = e.target.closest( 'a[href]' );
+		if ( ! a ) return;
+		const href = a.getAttribute( 'href' );
+		const accion = /wa\.me|whatsapp\.com/.test( href ) ? 'clic_whatsapp' : href.startsWith( 'tel:' ) ? 'clic_telefono' : href.startsWith( 'mailto:' ) ? 'clic_correo' : '';
+		if ( accion ) medir( accion, zona( a ), document.body.dataset.producto );
 	} );
 
 	/* ---------- Formulario de cotización ---------- */
@@ -217,13 +264,15 @@
 				`Hola, soy ${ get( 'nombre' ) }${ get( 'empresa' ) ? ` de ${ get( 'empresa' ) }` : '' }.`,
 				get( 'ciudad' ) ? `Ciudad: ${ get( 'ciudad' ) }` : null,
 				`Lona: ${ get( 'lona' ) || 'Necesito asesoría' }`,
+				get( 'rollos' ) ? `Rollos: ${ get( 'rollos' ) }` : null,
 				'',
 				get( 'mensaje' ),
 			].filter( ( l ) => l !== null ).join( '\n' );
 			const viaEmail = e.submitter && e.submitter.dataset.via === 'email';
 			const url = viaEmail
-				? `mailto:${ form.dataset.email }?subject=${ encodeURIComponent( 'Cotización de lona Fieraflex' ) }&body=${ encodeURIComponent( texto ) }`
+				? `mailto:${ form.dataset.email }?subject=${ encodeURIComponent( 'Cotización de lona FIERAFLEX' ) }&body=${ encodeURIComponent( texto ) }`
 				: `https://wa.me/${ form.dataset.whatsapp }?text=${ encodeURIComponent( texto ) }`;
+			medir( viaEmail ? 'formulario_correo' : 'formulario_whatsapp', 'formulario', get( 'lona' ) );
 			window.open( url, viaEmail ? '_self' : '_blank', 'noopener' );
 		} );
 	}

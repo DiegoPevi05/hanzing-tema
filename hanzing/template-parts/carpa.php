@@ -15,7 +15,7 @@ $steps       = array(
 	<div class="wrap">
 		<div class="head">
 			<h2 id="carpa-title" data-reveal>De rollo a carpa</h2>
-			<p class="lead" data-reveal style="--i:1">Así trabaja una lona Fieraflex: plana en el rollo, tensa en la estructura. Jala el cordón.</p>
+			<p class="lead" data-reveal style="--i:1">Así trabaja una lona FIERAFLEX: plana en el rollo, tensa en la estructura. Jala el cordón.</p>
 		</div>
 		<div class="carpa__stage">
 			<div class="carpa__figure" data-reveal>
@@ -40,7 +40,7 @@ $steps       = array(
 				<p id="carpa-status" class="carpa__status" aria-live="polite">La lona está tendida en el piso. Jala el cordón para tensarla.</p>
 				<div class="carpa__done">
 					<?php if ( $rec ) : ?>
-						<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp( 'Hola, quiero cotizar Lona ' . $rec['nombre'] . ' g/m² Fieraflex para una carpa.' ) ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Cotizar <?php echo esc_html( $rec['nombre'] ); ?></a>
+						<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp( 'Hola, quiero cotizar Lona ' . $rec['nombre'] . ' g/m² FIERAFLEX para una carpa.' ) ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Cotizar <?php echo esc_html( $rec['nombre'] ); ?></a>
 						<a class="link" href="<?php echo esc_url( $rec['url'] ); ?>">Ver ficha</a>
 					<?php endif; ?>
 				</div>

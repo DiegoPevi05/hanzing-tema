@@ -6,9 +6,9 @@ $lonas = hanzing_lonas();
 	<?php echo hanzing_img( hanzing_foto_id( 'complementos' ), '100vw', array( 'loading' => 'eager', 'alt' => '' ) ); ?>
 	<div class="page-hero__scrim"></div>
 	<div class="wrap page-hero__body">
-		<nav class="crumbs" aria-label="Ruta de navegación" data-load><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Inicio</a><span aria-hidden="true">/</span><span>Fieraflex</span></nav>
-		<h1 data-load style="--d:100ms">Lonas Fieraflex por gramaje</h1>
-		<p class="lead" data-load style="--d:220ms">Lonas de PVC Fieraflex con refuerzo de poliéster de alta tenacidad. Elige por cuánto cuerpo necesita tu proyecto y cuánta luz debe pasar.</p>
+		<nav class="crumbs" aria-label="Ruta de navegación" data-load><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Inicio</a><span aria-hidden="true">/</span><span>Lonas</span></nav>
+		<h1 data-load style="--d:100ms">Rollos de lona FIERAFLEX</h1>
+		<p class="lead" data-load style="--d:220ms">Lona de PVC sobre tejido de poliéster de alta resistencia. Elige por cuánto cuerpo necesita tu proyecto y cuánta luz debe pasar.</p>
 		<?php get_template_part( 'template-parts/sello', null, array( 'd' => '320ms' ) ); ?>
 	</div>
 </section>
@@ -19,7 +19,7 @@ $lonas = hanzing_lonas();
 	<div class="wrap">
 		<div class="head">
 			<h2 id="compara-title" data-reveal>Comparativa</h2>
-			<p class="lead" data-reveal style="--i:1">Todas incluyen impermeabilidad, protección UV y antimoho. El retardante al fuego es opcional, bajo pedido.</p>
+			<p class="lead" data-reveal style="--i:1">Todas son impermeables, anti-UV y antimoho, y se venden en rollos de 50 m sin pedido mínimo.</p>
 		</div>
 		<div class="compare section--steel" role="region" aria-labelledby="compara-title" tabindex="0" data-reveal>
 			<table>
@@ -38,6 +38,10 @@ $lonas = hanzing_lonas();
 		</div>
 	</div>
 </section>
+
+<?php get_template_part( 'template-parts/capas' ); ?>
+
+<?php get_template_part( 'template-parts/otros-productos' ); ?>
 
 <?php get_template_part( 'template-parts/contacto-banda', null, array( 'titulo' => '¿No sabes cuál pedir?', 'texto' => 'Mándanos una foto o una descripción del proyecto y te recomendamos la lona adecuada.' ) ); ?>
 <?php

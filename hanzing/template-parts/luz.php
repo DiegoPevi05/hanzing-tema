@@ -24,7 +24,7 @@ $g0      = $grupos[ $inicial ];
 	<div class="wrap">
 		<div class="head">
 			<h2 id="luz-title" data-reveal>¿Cuánta luz pasa?</h2>
-			<p class="lead" data-reveal style="--i:1">Cada lona Fieraflex deja pasar más o menos luz. Elige un tipo y mira cómo se vería el cielo debajo.</p>
+			<p class="lead" data-reveal style="--i:1">Cada lona FIERAFLEX deja pasar más o menos luz. Elige un tipo y mira cómo se vería el cielo debajo.</p>
 		</div>
 
 		<p class="luz__note">Escala ilustrativa, de luz plena a opaca.</p>

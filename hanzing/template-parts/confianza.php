@@ -4,18 +4,18 @@
  */
 $c     = hanzing_confianza();
 $items = array_values( array_filter( array(
-	$c['anio'] ? array( 'calendario', 'Desde ' . $c['anio'], 'Grupo Hanzing, León, Guanajuato' ) : null,
-	$c['envios'] ? array( 'envio', $c['envios'], 'Desde nuestro almacén en Industrial Delta' ) : null,
-	array( 'rollos', 'Disponibilidad constante', 'Rollos Fieraflex en existencia' ),
-	array( 'asesoria', 'Asesoría técnica', 'Te ayudamos a elegir antes de comprar' ),
-	array( 'persona', 'Atención personalizada', 'Hablas con alguien que conoce la lona' ),
+	$c['anio'] ? array( 'calendario', 'Desde ' . $c['anio'], 'Grupo Hanzing, empresa mexicana' ) : null,
+	array( 'rollos', 'Stock disponible', 'Rollos FIERAFLEX listos para surtir tu pedido' ),
+	array( 'reloj', 'Entrega ágil', 'Tiempos de entrega rápidos y envío por paquetería' ),
+	array( 'asesoria', 'Asesoría técnica', 'Diagnóstico y seguimiento para elegir bien' ),
+	array( 'persona', 'Trato directo', 'Hablas con un asesor, no con un conmutador' ),
 ) ) );
 ?>
 <section class="compromiso section section--steel" aria-labelledby="compromiso-title">
 	<div class="wrap">
 		<div class="head">
 			<h2 id="compromiso-title" data-reveal>Nuestro compromiso</h2>
-			<p class="lead" data-reveal style="--i:1">Lo que puedes esperar de Grupo Hanzing en cada pedido.</p>
+			<p class="lead" data-reveal style="--i:1">La lona adecuada para cada proyecto, con atención que sí acompaña.</p>
 		</div>
 		<?php $v = get_option( 'hanzing_video', array() ); ?>
 		<div class="compromiso__grid<?php echo empty( $v['mp4'] ) ? ' compromiso__grid--solo' : ''; ?>">

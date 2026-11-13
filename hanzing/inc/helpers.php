@@ -19,6 +19,9 @@ function hanzing_icon( $name ) {
 		'calendario' => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/>',
 		'pdf'      => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M6 3h8l4 4v14H6zM14 3v4h4M9 14l3 3 3-3M12 10v7"/>',
 		'industria' => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3 21V10l6 4V10l6 4V6l6 4v11zM7 18h2M12 18h2M17 18h2"/>',
+		'regla'    => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M2 8h20v8H2zM6 8v3M10 8v4M14 8v3M18 8v4"/>',
+		'reloj'    => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 7v5l3 2"/>',
+		'cajas'    => '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3 11h8v9H3zM13 11h8v9h-8zM8 3h8v8H8z"/>',
 		'grain'    => '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M7 8l5-5 5 5M7 16l5 5 5-5"/>',
 	);
 	return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' . ( $paths[ $name ] ?? '' ) . '</svg>';

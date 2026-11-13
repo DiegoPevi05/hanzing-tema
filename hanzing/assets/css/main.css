@@ -73,7 +73,7 @@ button { font: inherit; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .head { display: grid; gap: 1.25rem 4rem; align-items: end; margin-bottom: clamp(2.5rem, 2rem + 2vw, 4rem); }
-.section:not(.luz):not(.insignia):not(.contact-band) .head h2 { color: var(--field); }
+.section:not(.luz):not(.rollo50):not(.contact-band) .head h2 { color: var(--field); }
 @media (min-width: 900px) { .head { grid-template-columns: 1.1fr 1fr; } }
 .head .lead { color: var(--muted); }
 
@@ -415,7 +415,7 @@ button { font: inherit; }
 @media (hover: hover) and (pointer: fine) { .yt__btn:hover img { transform: scale(1.03); } }
 
 /* ---------- Formulario ---------- */
-.form { display: grid; gap: 1.25rem; align-content: start; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--radius); background: var(--steel); }
+.form { display: grid; gap: 1.25rem; align-content: start; align-self: start; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--radius); background: var(--steel); }
 @media (min-width: 640px) { .form { grid-template-columns: 1fr 1fr; } .form .full { grid-column: 1 / -1; } }
 .field { display: grid; gap: 0.45rem; }
 .field label { font-weight: 600; font-size: var(--step-small); }
@@ -441,10 +441,6 @@ button { font: inherit; }
 .site-footer__brand { display: grid; gap: 1rem; justify-items: start; }
 .site-footer__brand img { height: 72px; width: auto; }
 .site-footer__brand p { max-width: 46ch; }
-.site-footer__flagship { display: flex; align-items: center; gap: 1rem; }
-.site-footer__flagship img { height: 64px; width: auto; }
-.site-footer__flagship p { color: var(--ink); }
-.site-footer__flagship strong { font-weight: 600; }
 @media (min-width: 900px) { .site-footer__top { grid-template-columns: 1fr auto; } }
 .site-footer__grid { display: grid; gap: 2.5rem 3rem; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
 .site-footer h2 { font-size: 1.0625rem; font-weight: 600; color: var(--ink); margin-bottom: 1rem; letter-spacing: 0; }
@@ -506,20 +502,6 @@ button { font: inherit; }
 .site-header .brand img { height: 64px; }
 @media (max-width: 899px) { .site-header .brand img { height: 48px; } }
 
-/* ---------- Fieraflex, producto insignia ---------- */
-.insignia { background: var(--field); color: #fff; }
-.insignia__grid { display: grid; gap: 2.5rem 5rem; align-items: center; }
-.insignia__mark { display: grid; place-items: center; padding: clamp(1.5rem, 1rem + 2vw, 3rem); border-radius: var(--radius); background: #fff; justify-self: start; }
-.insignia__mark img { width: clamp(160px, 18vw, 260px); height: auto; }
-.insignia__body { display: grid; gap: 1.5rem; justify-items: start; }
-.insignia h2 { max-width: 18ch; }
-.insignia .lead { color: var(--field-muted); max-width: 52ch; }
-.insignia__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; margin: 1rem 0; width: 100%; }
-.insignia__facts div { padding: 0; }
-.insignia__facts dt { font-size: var(--step-small); color: var(--field-muted); }
-.insignia__facts dd { margin: 0.2rem 0 0; font-size: var(--step-lead); font-variant-numeric: tabular-nums; }
-@media (min-width: 900px) { .insignia__grid { grid-template-columns: auto 1fr; } .insignia__facts { grid-template-columns: repeat(4, auto); justify-content: start; gap: 1.5rem 3rem; } .insignia__facts dd { white-space: nowrap; } }
-
 /* ---------- Grupo Hanzing, la empresa ---------- */
 .empresa__grid { display: grid; gap: 2.5rem 4rem; align-items: center; }
 .empresa__photo { margin: 0; }
@@ -530,12 +512,14 @@ button { font: inherit; }
 .empresa__pillars div { padding: 0; }
 .empresa__pillars dt { font-size: var(--step-lead); line-height: 1.2; }
 .empresa__pillars dd { margin: 0.35rem 0 0; color: var(--muted); }
+.empresa__logo { width: 120px; height: auto; }
+.empresa__pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .empresa__mv { display: grid; gap: 2.5rem var(--gutter); margin-top: clamp(3rem, 2rem + 3vw, 5rem); align-items: start; }
 .empresa__mv h3 { margin-bottom: 0.75rem; }
 .empresa__mv p { color: var(--muted); }
 .empresa__mv figure { margin: 0; }
 .empresa__mv img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); }
-@media (min-width: 900px) { .empresa__grid { grid-template-columns: 1.2fr 1fr; } .empresa__mv { grid-template-columns: 1fr 1fr 1.2fr; } }
+@media (min-width: 900px) { .empresa__grid { grid-template-columns: 1fr 1fr; } .empresa__mv { grid-template-columns: 1fr 1fr 1.2fr; } }
 
 /* ---------- Sello Fieraflex en héroes ---------- */
 .sello { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; padding: 0.4rem 0.9rem 0.4rem 0.4rem; border-radius: var(--radius); background: #fff; color: var(--ink); font-size: var(--step-small); font-weight: 600; }
@@ -603,15 +587,16 @@ button { font: inherit; }
 
 /* ---------- Panel de acciones rápidas ---------- */
 .acciones { position: relative; z-index: 2; margin-top: -6rem; }
-.acciones__panel { display: grid; gap: 0.5rem 2.5rem; padding: clamp(0.5rem, 0.25rem + 1vw, 1rem) clamp(0.5rem, 0.25rem + 1.5vw, 1.5rem); border-radius: var(--radius); background: var(--bg); }
+.acciones__panel { list-style: none; margin: 0; display: grid; gap: 0.5rem 2.5rem; padding: clamp(0.5rem, 0.25rem + 1vw, 1rem) clamp(0.5rem, 0.25rem + 1.5vw, 1.5rem); border-radius: var(--radius); background: var(--bg); }
 .accion { display: grid; gap: 0.9rem; align-content: start; justify-items: start; padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); }
 .accion__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius); background: var(--steel); color: var(--field); }
 .accion__icon svg { width: 26px; height: 26px; }
 .accion h2 { font-size: var(--step-lead); color: var(--ink); }
 .accion p { color: var(--muted); }
 .accion .button { margin-top: 0.25rem; }
+@media (min-width: 600px) and (max-width: 899px) { .acciones__panel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 900px) {
-	.acciones__panel { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.acciones__panel { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 /* ---------- Nuestro compromiso ---------- */
@@ -631,3 +616,119 @@ button { font: inherit; }
 	.compromiso__grid { grid-template-columns: 1.1fr 1fr; }
 	.compromiso__grid:not(.compromiso__grid--solo) .compromiso__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* ==========================================================================
+   Rediseño FIERAFLEX (manual de marca 2026)
+   ========================================================================== */
+
+/* Marca endosada en la cabecera: FIERAFLEX protagonista, Grupo Hanzing como sello */
+.site-header .brand img.brand__ff { height: 52px; width: auto; }
+.brand__txt { font-weight: 700; font-size: 1.5rem; color: var(--accent); }
+.brand__endoso { padding-left: 0.85rem; border-left: 2px solid var(--steel-2); font-size: 0.8125rem; line-height: 1.25; color: var(--muted); }
+.brand__endoso strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 899px) { .site-header .brand img.brand__ff { height: 40px; } }
+@media (max-width: 420px) { .brand__endoso { display: none; } }
+
+/* Héroe */
+.corp-hero__marca { display: inline-flex; align-items: center; gap: 0.6rem; font-size: var(--step-small); color: #e8ebf5; }
+.corp-hero__marca span { padding: 0.25rem 0.6rem; border-radius: 6px; background: var(--accent); color: var(--accent-ink); font-weight: 700; letter-spacing: 0.04em; }
+
+/* Más lona por tu inversión: regla de 50 m */
+.rollo50 { background: var(--field); color: #fff; }
+.rollo50__top { display: grid; gap: 2rem 4rem; align-items: end; }
+.rollo50__copy { display: grid; gap: 1.25rem; }
+.rollo50 .lead { color: var(--field-muted); max-width: 52ch; }
+.rollo50__cifra { font-size: clamp(4.5rem, 2.5rem + 9vw, 10rem); font-weight: 600; line-height: 0.9; letter-spacing: -0.04em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.rollo50__cifra small { display: block; margin-top: 0.75rem; font-size: var(--step-small); font-weight: 400; letter-spacing: 0; color: var(--field-muted); }
+@media (min-width: 900px) { .rollo50__top { grid-template-columns: 1.4fr auto; } .rollo50__cifra { text-align: right; } }
+.regla { margin-block: clamp(2.5rem, 2rem + 2vw, 4rem); }
+.regla__pista { position: relative; height: 18px; border-radius: 4px; background: rgba(255, 255, 255, 0.1); overflow: clip; }
+.regla__lona { position: absolute; inset: 0; background: var(--accent); transform-origin: left; }
+.regla__marcas { position: relative; height: 2.5rem; margin: 0.5rem 0 0; padding: 0; list-style: none; color: var(--field-muted); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.regla__marcas li { position: absolute; top: 0; left: var(--x); transform: translateX(-50%); display: grid; justify-items: center; gap: 0.3rem; }
+.regla__marcas li::before { content: ''; width: 1px; height: 8px; background: rgba(255, 255, 255, 0.35); }
+.regla__marcas li:first-child { transform: none; justify-items: start; }
+.regla__marcas li:last-child { transform: translateX(-100%); justify-items: end; color: #fff; font-weight: 600; }
+@media (max-width: 599px) { .regla__marcas li:nth-child(even) span { visibility: hidden; } }
+.pilares { margin: 0; display: grid; gap: 2rem var(--gutter); }
+.pilares dt { font-size: var(--step-lead); font-weight: 600; }
+.pilares dd { margin: 0.4rem 0 0; color: var(--field-muted); }
+@media (min-width: 900px) { .pilares { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: no-preference) {
+	.js .regla__lona { transform: scaleX(0); transition: transform 1800ms var(--ease-expo) 200ms; }
+	.js .regla.is-in .regla__lona { transform: scaleX(1); }
+	.js .regla__marcas li { opacity: 0; transition: opacity 400ms var(--ease-out); transition-delay: calc(300ms + var(--x) * 14ms); }
+	.js .regla.is-in .regla__marcas li { opacity: 1; }
+}
+
+/* Compra a tu escala */
+.escala__grid { display: grid; gap: var(--gutter); }
+.perfil { display: grid; gap: 1rem; align-content: start; justify-items: start; padding: clamp(1.75rem, 1.25rem + 2vw, 3rem); border-radius: var(--radius); background: var(--steel); }
+.perfil__rango { font-size: var(--step-head); font-weight: 600; line-height: 1; letter-spacing: -0.03em; color: var(--field); font-variant-numeric: tabular-nums; }
+.perfil h3 { color: var(--ink); }
+.perfil p:not(.perfil__rango) { color: var(--muted); }
+.perfil .button { margin-top: 0.75rem; }
+.perfil--field { background: var(--field); }
+.perfil--field .perfil__rango { color: var(--accent); }
+.perfil--field h3 { color: #fff; }
+.perfil--field p:not(.perfil__rango) { color: var(--field-muted); }
+@media (min-width: 900px) { .escala__grid { grid-template-columns: 1fr 1fr; } }
+
+/* Así está hecha: vista explotada de las capas */
+.capas__grid { display: grid; gap: 3rem 5rem; align-items: center; }
+.capas__copy { display: grid; gap: 1.25rem; }
+.capas__copy h2 { color: var(--field); }
+.capas__copy .lead { color: var(--muted); }
+.capas__datos { margin: 1rem 0 0; display: grid; gap: 1.25rem; }
+.capas__datos div { display: grid; gap: 0.2rem; }
+.capas__datos dt { font-size: var(--step-small); color: var(--muted); }
+.capas__datos dd { margin: 0; color: var(--muted); }
+.capas__datos strong { font-size: var(--step-lead); font-weight: 600; color: var(--field); font-variant-numeric: tabular-nums; }
+@media (min-width: 900px) { .capas__grid { grid-template-columns: 1fr 1.15fr; } .capas__datos { grid-template-columns: repeat(3, auto); justify-content: start; gap: 1.25rem 2.5rem; } }
+.capas__fig { margin: 0; }
+.capas__pila { list-style: none; margin: 0; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); display: grid; gap: 0; border-radius: var(--radius); background: var(--bg); }
+.capa { display: grid; grid-template-columns: minmax(120px, 42%) 1fr; gap: 1.25rem; align-items: center; }
+.capa__lamina { display: block; height: 14px; border-radius: 3px; background: var(--hz-blue); }
+.capa--pvc:nth-child(2) .capa__lamina, .capa--pvc:nth-child(4) .capa__lamina { background: #4a5b9a; }
+.capa--tejido .capa__lamina { height: 22px; background: repeating-linear-gradient(90deg, var(--steel-2) 0 6px, #fff 6px 9px); outline: 2px solid var(--steel-2); outline-offset: -2px; } /* taste-skill-ignore: trama del tejido, no degradado */
+.capa__txt { font-size: var(--step-small); color: var(--muted); line-height: 1.3; }
+.capa__txt strong { display: block; color: var(--ink); font-weight: 600; }
+.capa--tejido .capa__txt strong { color: var(--accent-ink); }
+.capas__fig figcaption { margin-top: 0.75rem; font-size: var(--step-small); color: var(--muted); }
+.capa { margin-block: 0.55rem; }
+@media (prefers-reduced-motion: no-preference) {
+	.js .capa { margin-block: 0; transition: margin 1100ms var(--ease-expo); }
+	.js .capa__lamina { transform: translateY(calc(var(--n) * -6px)); transition: transform 1100ms var(--ease-expo); }
+	.js .capa__txt { opacity: 0; transform: translateX(-8px); transition: opacity 500ms var(--ease-out), transform 700ms var(--ease-expo); transition-delay: calc(500ms + (var(--n) + 2) * 90ms); }
+	.js .capas__fig.is-in .capa { margin-block: 0.55rem; }
+	.js .capas__fig.is-in .capa__lamina { transform: none; }
+	.js .capas__fig.is-in .capa__txt { opacity: 1; transform: none; }
+}
+
+/* También surtimos */
+.otros__grid { display: grid; gap: 2.5rem 5rem; align-items: start; }
+.otros__copy { display: grid; gap: 1.25rem; }
+.otros__copy h2 { color: var(--field); }
+.otros__copy .lead { color: var(--muted); }
+.otros__foto { margin: 0.75rem 0 0; }
+.otros__foto img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); }
+.otros__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.otros__lista li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.25rem; border-radius: var(--radius); background: var(--bg); }
+.otros__lista strong { display: block; font-weight: 600; }
+.otros__lista span { display: block; color: var(--muted); font-size: var(--step-small); }
+.otros__lista .link { flex: none; color: var(--field); }
+@media (min-width: 900px) { .otros__grid { grid-template-columns: 1fr 1.1fr; } }
+
+/* Parámetros técnicos de la ficha */
+.params { overflow-x: auto; border-radius: var(--radius); background: var(--bg); }
+.params table { width: 100%; min-width: 620px; border-collapse: collapse; }
+.params th, .params td { text-align: left; padding: 1rem 1.25rem; }
+.params thead th { font-weight: 600; color: var(--muted); font-size: var(--step-small); }
+.params tbody tr + tr :is(th, td) { border-top: 1px solid var(--steel-2); }
+.params tbody th { font-weight: 600; }
+.params .num { color: var(--field); font-weight: 600; font-variant-numeric: tabular-nums; }
+.params td:last-child { color: var(--muted); font-size: var(--step-small); }
+
+/* Crédito de desarrollo */
+.site-footer .site-footer__credit { color: var(--field-muted); text-decoration: underline; text-decoration-color: rgba(255, 255, 255, 0.3); }
+@media (hover: hover) and (pointer: fine) { .site-footer .site-footer__credit:hover { color: #fff; } }

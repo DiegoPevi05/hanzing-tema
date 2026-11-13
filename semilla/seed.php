@@ -64,15 +64,15 @@ $lonas = array(
 		'app' => array( 'carpa-traslucida.jpg', 'Carpa con cerramientos transparentes en un jardín' ),
 	),
 	array(
-		'slug' => 'lona-traslucida-610', 'title' => 'Traslúcida 610', 'order' => 2, 'gramaje' => 610, 'luz' => 'traslucida',
-		'excerpt' => 'Deja pasar la luz de forma controlada. Disponible en varios colores.',
+		'slug' => 'lona-traslucida-610', 'specs' => "Material de revestimiento | PVC de alto peso molecular |\nPeso | 610 g/m² | DIN EN ISO 2286-2\nEspesor | 0.50 ± 0.02 mm | DIN EN ISO 2286-2\nTela base | Poliéster 1000D, 14×14 |\nResistencia a la tracción | Longitud ≥ 2,500 · Trama ≥ 2,300 N/5 cm | DIN EN ISO 1421\nFuerza de desgarro | Longitud ≥ 230 · Trama ≥ 110 N | DIN 53363\nResistencia de adherencia | ≥ 50 N/5 cm | DIN EN ISO 2411\nTemperatura de uso | −30 a 70 °C | DIN EN ISO 1876-1\nClasificación de resistencia al fuego | B2 | DIN 4102 / GB 8624", 'ficha' => 'ficha-traslucida-610.jpg', 'title' => 'Traslúcida 610', 'order' => 2, 'gramaje' => 610, 'luz' => 'traslucida',
+		'excerpt' => 'Deja pasar la luz de forma controlada. 24 colores para escoger.',
 		'content' => 'Lona resistente e impermeable que permite el paso controlado de la luz. Multifuncional, durable y disponible en varios colores para personalizar cada proyecto, en interior o exterior.',
-		'usos' => "Toldos\nCarpas\nCubiertas\nCerramientos\nPublicidad", 'colores' => 'Varios colores',
+		'usos' => "Toldos\nCarpas\nCubiertas\nCerramientos\nPublicidad", 'colores' => '24 colores para escoger',
 		'muestra' => array( 'lona-verde.jpg', 'Muestra de lona Traslúcida 610 en verde' ),
 		'app' => array( 'toldo-terraza.jpg', 'Toldo verde sobre la terraza de un restaurante' ),
 	),
 	array(
-		'slug' => 'lona-blackout-610', 'title' => 'Black out 610', 'order' => 3, 'gramaje' => 610, 'luz' => 'opaca',
+		'slug' => 'lona-blackout-610', 'specs' => "Material de revestimiento | PVC de alto peso molecular |\nPeso | 610 g/m² | DIN EN ISO 2286-2\nEspesor | 0.50 ± 0.02 mm | DIN EN ISO 2286-2\nTela base | Poliéster 1000D, 14×14 |\nResistencia a la tracción | Longitud ≥ 2,500 · Trama ≥ 2,300 N/5 cm | DIN EN ISO 1421\nFuerza de desgarro | Longitud ≥ 230 · Trama ≥ 110 N | DIN 53363\nResistencia de adherencia | ≥ 50 N/5 cm | DIN EN ISO 2411\nTemperatura de uso | −30 a 70 °C | DIN EN ISO 1876-1\nClasificación de resistencia al fuego | B2 | DIN 4102 / GB 8624", 'ficha' => 'ficha-blackout-610.jpg', 'title' => 'Black out 610', 'order' => 3, 'gramaje' => 610, 'luz' => 'opaca',
 		'excerpt' => 'La black out más versátil: publicidad, banners, fondos y cubiertas.',
 		'content' => 'Lona opaca, resistente y de gran versatilidad que bloquea totalmente la luz. Funciona para múltiples proyectos en distintos sectores, en aplicaciones interiores y exteriores.',
 		'usos' => "Publicidad y banners\nFondos\nCubiertas\nCarpas", 'colores' => '',
@@ -88,7 +88,7 @@ $lonas = array(
 		'app' => array( 'lona-camionera.jpg', 'Camión con caja cubierta de lona amarilla' ),
 	),
 	array(
-		'slug' => 'lona-blackout-680', 'title' => 'Black out 680', 'order' => 5, 'gramaje' => 680, 'luz' => 'opaca',
+		'slug' => 'lona-blackout-680', 'specs' => "Material de revestimiento | PVC de alto peso molecular |\nPeso | 680 g/m² | DIN EN ISO 2286-2\nEspesor | 0.60 ± 0.02 mm | DIN EN ISO 2286-2\nTela base | Poliéster 1000D, 14×14 |\nResistencia a la tracción | Longitud ≥ 2,500 · Trama ≥ 2,300 N/5 cm | DIN EN ISO 1421\nFuerza de desgarro | Longitud ≥ 230 · Trama ≥ 110 N | DIN 53363\nResistencia de adherencia | ≥ 50 N/5 cm | DIN EN ISO 2411\nTemperatura de uso | −30 a 70 °C | DIN EN ISO 1876-1\nClasificación de resistencia al fuego | B2 | DIN 4102 / GB 8624", 'ficha' => 'ficha-blackout-680.jpg', 'title' => 'Black out 680', 'order' => 5, 'gramaje' => 680, 'luz' => 'opaca',
 		'excerpt' => 'Para carpas de eventos: flexible y rápida de instalar.',
 		'content' => 'Lona opaca que marca la diferencia en carpas para eventos. Su flexibilidad y adaptabilidad hacen que la instalación sea sencilla y rápida.',
 		'usos' => "Carpas para eventos\nVelarias\nCubiertas", 'colores' => '',
@@ -96,7 +96,7 @@ $lonas = array(
 		'app' => array( 'velaria-escuela.jpg', 'Velaria blanca tensada sobre el patio de una escuela' ),
 	),
 	array(
-		'slug' => 'lona-blackout-800', 'title' => 'Black out 800', 'order' => 6, 'gramaje' => 800, 'luz' => 'opaca',
+		'slug' => 'lona-blackout-800', 'specs' => "Material de revestimiento | PVC de alto peso molecular |\nPeso | 800 g/m² | DIN EN ISO 2286-2\nEspesor | 0.80 ± 0.02 mm | DIN EN ISO 2286-2\nTela base | Poliéster 1000D, 14×14 |\nResistencia a la tracción | Longitud ≥ 2,500 · Trama ≥ 2,300 N/5 cm | DIN EN ISO 1421\nFuerza de desgarro | Longitud ≥ 230 · Trama ≥ 110 N | DIN 53363\nResistencia de adherencia | ≥ 50 N/5 cm | DIN EN ISO 2411\nTemperatura de uso | −30 a 70 °C | DIN EN ISO 1876-1\nClasificación de resistencia al fuego | B2 | DIN 4102 / GB 8624", 'ficha' => 'ficha-blackout-800.jpg', 'title' => 'Black out 800', 'order' => 6, 'gramaje' => 800, 'luz' => 'opaca',
 		'excerpt' => 'Máxima cobertura para naves avícolas y proyectos arquitectónicos.',
 		'content' => 'Nuestra lona más pesada. Totalmente opaca, pensada para proyectos avícolas, arquitectónicos y cualquier aplicación que requiera máxima cobertura y resistencia a la tensión.',
 		'usos' => "Naves avícolas\nProyectos arquitectónicos\nCubiertas industriales", 'colores' => '',
@@ -119,6 +119,9 @@ foreach ( $lonas as $l ) {
 	set_post_thumbnail( $id, hz_seed_image( $l['muestra'][0], $l['muestra'][1] ) );
 	update_post_meta( $id, 'aplicacion_id', hz_seed_image( $l['app'][0], $l['app'][1] ) );
 	update_post_meta( $id, 'aplicacion_alt', $l['app'][1] );
+	update_post_meta( $id, 'rollo', 'Rollo de 50 m' );
+	update_post_meta( $id, 'especificaciones', $l['specs'] ?? '' );
+	update_post_meta( $id, 'ficha_id', ! empty( $l['ficha'] ) ? hz_seed_image( $l['ficha'], 'Ficha técnica ' . $l['title'] ) : 0 );
 	WP_CLI::log( "Lona: {$l['title']} ($id)" );
 }
 
@@ -126,10 +129,9 @@ foreach ( $lonas as $l ) {
 
 $fotos = array(
 	'equipo'          => 'Equipo de Grupo Hanzing frente a los anaqueles de rollos de lona',
-	'almacen-hanzing' => 'Almacén de Grupo Hanzing Fieraflex con camión de reparto',
 	'atencion-ventas' => 'Ejecutiva de ventas de Grupo Hanzing atendiendo una llamada frente al muestrario de rollos',
 	'asesor'          => 'Asesor de Grupo Hanzing en su escritorio con el muestrario de rollos al fondo',
-	'rollos-colores'  => 'Rollos de lona Fieraflex de colores',
+	'rollos-colores'  => 'Rollos de lona FIERAFLEX de colores',
 	'complementos'    => 'Rollos de lona, lona azul doblada, soplador para inflables y cinta',
 	'carpa-boda'      => 'Carpa blanca montada para una boda en jardín',
 	'toldo-fachada'   => 'Toldo verde sobre la entrada de un café',
@@ -137,6 +139,10 @@ $fotos = array(
 	'cancha-techada'  => 'Cancha de pádel cubierta con lona blanca',
 	'lona-traspaulin' => 'Trama de poliéster de una lona Traspaulín vista de cerca',
 );
+// Por seguridad no se publican fotos de la fachada del almacén: se borra si quedó de una carga anterior.
+foreach ( get_posts( array( 'post_type' => 'attachment', 'name' => 'hz-almacen-hanzing', 'post_status' => 'inherit', 'posts_per_page' => -1 ) ) as $viejo ) {
+	wp_delete_attachment( $viejo->ID, true );
+}
 $ids = array();
 foreach ( $fotos as $file => $alt ) {
 	$ids[ $file ] = hz_seed_image( "$file.jpg", $alt );
@@ -145,8 +151,8 @@ update_option( 'hanzing_fotos', $ids );
 
 /* ---------- Material extraído de grupohanzing.com con Scrapling ---------- */
 
-update_option( 'hanzing_leon', hz_seed_image( 'logo-fieraflex-leon.png', 'León de Fieraflex' ) );
-update_option( 'hanzing_og', hz_seed_image( 'og-fieraflex.jpg', 'Rollos de lona Fieraflex, de Grupo Hanzing' ) );
+update_option( 'hanzing_leon', hz_seed_image( 'logo-fieraflex-leon.png', 'León de FIERAFLEX' ) );
+update_option( 'hanzing_og', hz_seed_image( 'og-fieraflex.jpg', 'Rollos de lona FIERAFLEX, de Grupo Hanzing' ) );
 update_option( 'hanzing_video', array(
 	'mp4'    => hz_seed_image( 'video-anaqueles.mp4', 'Anaqueles con rollos de lona de colores' ),
 	'poster' => hz_seed_image( 'video-anaqueles-poster.jpg', 'Anaqueles con rollos de lona de colores' ),
@@ -156,15 +162,16 @@ update_option( 'hanzing_video', array(
 
 $logo = hz_seed_image( 'logo-hanzing.png', 'Grupo Hanzing' );
 set_theme_mod( 'custom_logo', $logo );
-update_option( 'hanzing_logo_fieraflex', hz_seed_image( 'logo-fieraflex.png', 'Fieraflex' ) );
+update_option( 'hanzing_logo_fieraflex', hz_seed_image( 'logo-fieraflex.png', 'FIERAFLEX' ) );
+update_option( 'hanzing_logo_fieraflex_h', hz_seed_image( 'logo-fieraflex-horizontal.png', 'FIERAFLEX' ) );
 
 /* ---------- Páginas ---------- */
 
 $paginas = array(
 	'inicio'    => array( 'Inicio', '' ),
-	'servicios' => array( 'Lona y asesoría técnica', 'Comercializamos lonas de PVC y productos complementarios pensados para durar. Cada proyecto es distinto, por eso te asesoramos antes de que compres.' ),
-	'nosotros'  => array( 'Grupo Hanzing, la casa de Fieraflex', 'Una empresa mexicana de León, Guanajuato, dedicada a la venta y distribución de lonas de PVC de alta resistencia.' ),
-	'contacto'  => array( 'Cotiza tu lona', 'Dinos qué lona buscas, cuántos metros y para qué proyecto. Te contestamos por WhatsApp en horario de oficina.' ),
+	'servicios' => array( 'Lona y asesoría técnica', 'Rollos de lona de PVC, accesorios y asesoría para elegir el material correcto. Atendemos desde un rollo hasta volumen de distribuidor.' ),
+	'nosotros'  => array( 'FIERAFLEX y Grupo Hanzing', 'Dos marcas, una visión y un mismo respaldo: FIERAFLEX es la marca de lonas de PVC de Grupo Hanzing.' ),
+	'contacto'  => array( 'Cotiza tu lona', 'Dinos qué lona buscas, cuántos rollos y para qué proyecto. Te contestamos casi de inmediato por WhatsApp en horario de atención.' ),
 );
 $page_ids = array();
 foreach ( $paginas as $slug => $p ) {
@@ -186,13 +193,20 @@ foreach ( array( 'servicios', 'nosotros', 'contacto' ) as $slug ) {
 /* ---------- Industrias ---------- */
 
 $industrias = array(
-	'eventos'     => array( 'Eventos', 'carpa-boda.jpg', 'Carpa blanca montada para una boda', 'Carpas, velarias y cerramientos para eventos: lona opaca para sombra total y transparente para ventanas.', array( 'lona-blackout-680', 'lona-blackout-610', 'lona-traspaulin-540', 'lona-traslucida-610' ) ),
-	'inflables'   => array( 'Inflables y brincolines', 'brincolin.jpg', 'Brincolín inflable', 'Lona que soporta fricción, peso y uso continuo para fabricar brincolines e inflables.', array( 'lona-brincolinera-610' ) ),
-	'transporte'  => array( 'Transporte', 'lona-camionera.jpg', 'Camión con caja cubierta de lona', 'Lona camionera resistente para cubrir cajas y cargas.', array( 'lona-brincolinera-610' ) ),
-	'toldos'      => array( 'Toldos y fachadas', 'toldo-fachada.jpg', 'Toldo verde en la fachada de un café', 'Toldos, cerramientos y cubiertas con luz filtrada y color.', array( 'lona-traslucida-610', 'lona-traspaulin-540' ) ),
-	'naves'       => array( 'Naves y arquitectura', 'cubierta-industrial.jpg', 'Cubierta industrial de lona', 'Cubiertas industriales, naves avícolas y proyectos arquitectónicos que piden máxima cobertura.', array( 'lona-blackout-800', 'lona-blackout-680', 'lona-blackout-610' ) ),
-	'publicidad'  => array( 'Publicidad', 'rollos-colores.jpg', 'Rollos de lona de colores', 'Lona para banners, fondos y anuncios, opaca o traslúcida.', array( 'lona-blackout-610', 'lona-traslucida-610' ) ),
+	'toldos'     => array( 'Toldos y fachadas', 'toldo-fachada.jpg', 'Toldo verde en la fachada de un café', 'Toldos, cerramientos y cubiertas con luz filtrada y color: traslúcida en 24 colores o black out.', array( 'lona-traslucida-610', 'lona-blackout-610', 'lona-traspaulin-540' ) ),
+	'velarias'   => array( 'Velarias y domos', 'velaria-jardin.jpg', 'Velaria blanca tensada en un jardín', 'Velarias, domos y cubiertas tensadas que piden resistencia a la tracción y estabilidad.', array( 'lona-blackout-680', 'lona-blackout-800', 'lona-traslucida-610' ) ),
+	'carpas'     => array( 'Carpas y eventos', 'carpa-boda.jpg', 'Carpa blanca montada para una boda', 'Carpas para eventos: lona opaca para sombra total y transparente para ventanas.', array( 'lona-blackout-680', 'lona-blackout-610', 'lona-traspaulin-540' ) ),
+	'inflables'  => array( 'Inflables y brincolines', 'brincolin.jpg', 'Brincolín inflable', 'Lona que soporta fricción, peso y uso continuo para fabricar brincolines e inflables.', array( 'lona-brincolinera-610' ) ),
+	'industrial' => array( 'Industrial y naves', 'cubierta-industrial.jpg', 'Cubierta industrial de lona', 'Cubiertas industriales, naves avícolas y proyectos que piden máxima cobertura.', array( 'lona-blackout-800', 'lona-blackout-680' ) ),
+	'transporte' => array( 'Transporte', 'lona-camionera.jpg', 'Camión con caja cubierta de lona', 'Lona de uso rudo para cubrir cajas y cargas.', array( 'lona-brincolinera-610', 'lona-blackout-610' ) ),
 );
+// Industrias que ya no se usan.
+foreach ( array( 'eventos', 'naves', 'publicidad' ) as $vieja ) {
+	$t = get_term_by( 'slug', $vieja, 'industria' );
+	if ( $t ) {
+		wp_delete_term( $t->term_id, 'industria' );
+	}
+}
 $asignar = array();
 $orden   = 0;
 foreach ( $industrias as $slug => $d ) {
@@ -213,8 +227,8 @@ foreach ( $asignar as $lona_slug => $tids ) {
 	}
 }
 $page_ids['industrias'] = hz_seed_post( 'page', 'industrias', array(
-	'post_title'   => 'Lona Fieraflex por industria',
-	'post_excerpt' => 'Cada industria pide una lona distinta. Elige la tuya y te mostramos las líneas Fieraflex recomendadas.',
+	'post_title'   => 'Lona FIERAFLEX por industria',
+	'post_excerpt' => 'Cada industria pide una lona distinta. Elige la tuya y te mostramos las líneas FIERAFLEX recomendadas.',
 ) );
 
 /* ---------- Menú ---------- */
@@ -223,7 +237,7 @@ $menu = wp_get_nav_menu_object( 'Principal' ) ?: get_term( wp_create_nav_menu( '
 foreach ( wp_get_nav_menu_items( $menu->term_id ) ?: array() as $item ) {
 	wp_delete_post( $item->ID, true );
 }
-wp_update_nav_menu_item( $menu->term_id, 0, array( 'menu-item-title' => 'Fieraflex', 'menu-item-url' => home_url( '/productos/' ), 'menu-item-status' => 'publish', 'menu-item-type' => 'custom' ) );
+wp_update_nav_menu_item( $menu->term_id, 0, array( 'menu-item-title' => 'Lonas', 'menu-item-url' => home_url( '/productos/' ), 'menu-item-status' => 'publish', 'menu-item-type' => 'custom' ) );
 wp_update_nav_menu_item( $menu->term_id, 0, array( 'menu-item-title' => 'Industrias', 'menu-item-object-id' => $page_ids['industrias'], 'menu-item-object' => 'page', 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
 foreach ( array( 'servicios', 'nosotros', 'contacto' ) as $slug ) {
 	wp_update_nav_menu_item( $menu->term_id, 0, array(
@@ -238,7 +252,8 @@ set_theme_mod( 'nav_menu_locations', array( 'principal' => $menu->term_id ) );
 
 /* ---------- Ajustes ---------- */
 
-update_option( 'blogdescription', 'Lonas de PVC Fieraflex en León, Guanajuato' );
+update_option( 'blogname', 'FIERAFLEX' );
+update_option( 'blogdescription', 'Rollos de lona de PVC · Una marca de Grupo Hanzing' );
 wp_delete_post( 1, true ); // "Hola mundo"
 wp_delete_post( 2, true ); // Página de ejemplo
 flush_rewrite_rules();

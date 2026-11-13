@@ -1,7 +1,7 @@
 <?php
 get_header();
 the_post();
-get_template_part( 'template-parts/page-hero', null, array( 'foto' => get_post_thumbnail_id() ?: hanzing_foto_id( 'almacen-hanzing' ) ) );
+get_template_part( 'template-parts/page-hero', null, array( 'foto' => get_post_thumbnail_id() ?: hanzing_foto_id( 'rollos-colores' ) ) );
 ?>
 <section class="section">
 	<div class="wrap prose"><?php the_content(); ?></div>

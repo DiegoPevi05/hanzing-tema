@@ -1,32 +1,27 @@
 <?php
 /**
- * Grupo Hanzing, la empresa.
+ * Respaldo de Grupo Hanzing (marca matriz). Valores del manual de marca 2026.
  */
+$hz = get_theme_mod( 'custom_logo' );
 ?>
-<section class="empresa section section--steel" aria-labelledby="empresa-title">
+<section class="empresa section" aria-labelledby="empresa-title">
 	<div class="wrap">
-		<div class="head">
-			<h2 id="empresa-title" data-reveal>Grupo Hanzing</h2>
-			<p class="lead" data-reveal style="--i:1">Empresa mexicana de León, Guanajuato, dedicada a la venta y distribución de lonas de PVC de alta resistencia.</p>
-		</div>
 		<div class="empresa__grid">
-			<figure class="empresa__photo" data-reveal>
-				<?php echo hanzing_img( hanzing_foto_id( 'almacen-hanzing' ), '(min-width: 900px) 55vw, 100vw', array( 'alt' => 'Almacén de Grupo Hanzing en Industrial Delta, León, con camión de reparto' ) ); ?>
-				<figcaption>Almacén en Industrial Delta, León.</figcaption>
-			</figure>
 			<div class="empresa__body">
+				<?php echo $hz ? wp_get_attachment_image( $hz, 'full', false, array( 'class' => 'empresa__logo', 'alt' => 'Grupo Hanzing', 'loading' => 'lazy', 'sizes' => '140px' ) ) : ''; ?>
+				<h2 id="empresa-title" data-reveal>Con el respaldo de Grupo Hanzing</h2>
+				<p class="lead" data-reveal style="--i:1">FIERAFLEX es la marca de lonas de PVC de Grupo Hanzing, el grupo empresarial mexicano que articula la operación, las relaciones comerciales y el crecimiento de sus marcas.</p>
 				<dl class="empresa__pillars">
-					<div data-reveal style="--i:1"><dt>Disponibilidad constante</dt><dd>Rollos Fieraflex en existencia para que tu taller no se detenga.</dd></div>
-					<div data-reveal style="--i:2"><dt>Atención personalizada</dt><dd>Hablas con alguien que conoce el material y tu tipo de proyecto.</dd></div>
-					<div data-reveal style="--i:3"><dt>Asesoría técnica</dt><dd>Te ayudamos a elegir gramaje y tipo de lona antes de comprar.</dd></div>
+					<div data-reveal style="--i:1"><dt>Solidez</dt><dd>Procesos claros, cumplimiento y consistencia.</dd></div>
+					<div data-reveal style="--i:2"><dt>Confianza</dt><dd>Transparencia en acuerdos, precios y compromisos.</dd></div>
+					<div data-reveal style="--i:3"><dt>Visión</dt><dd>Desarrollo de mercado y crecimiento ordenado.</dd></div>
+					<div data-reveal style="--i:4"><dt>Cercanía</dt><dd>Relaciones comerciales directas y profesionales.</dd></div>
 				</dl>
-				<a class="button button--field" href="<?php echo esc_url( home_url( '/nosotros/' ) ); ?>" data-reveal style="--i:4">Conocer la empresa</a>
+				<a class="button button--field" href="<?php echo esc_url( home_url( '/nosotros/' ) ); ?>" data-reveal style="--i:5">Conocer Grupo Hanzing</a>
 			</div>
-		</div>
-		<div class="empresa__mv">
-			<div data-reveal><h3>Misión</h3><p>Ofrecer lonas de PVC de alta calidad con durabilidad, resistencia y disponibilidad constante, con atención profesional y personalizada.</p></div>
-			<div data-reveal style="--i:1"><h3>Visión</h3><p>Consolidarnos como marca líder a nivel nacional en la comercialización y distribución de lona de PVC.</p></div>
-			<figure data-reveal style="--i:2"><?php echo hanzing_img( hanzing_foto_id( 'equipo' ), '(min-width: 900px) 33vw, 100vw', array( 'alt' => 'Equipo de Grupo Hanzing frente a los anaqueles de rollos de lona' ) ); ?></figure>
+			<figure class="empresa__photo" data-reveal>
+				<?php echo hanzing_img( hanzing_foto_id( 'atencion-ventas' ), '(min-width: 900px) 50vw, 100vw', array( 'alt' => 'Ejecutiva de ventas de Grupo Hanzing atendiendo una llamada frente al muestrario de rollos' ) ); ?>
+			</figure>
 		</div>
 	</div>
 </section>

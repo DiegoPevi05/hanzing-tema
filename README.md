@@ -3,7 +3,7 @@
 | Carpeta | Qué es |
 |---|---|
 | `hanzing/` | Tema de WordPress. Lonas como tipo de contenido propio (gramaje, paso de luz, usos, parámetros técnicos, ficha descargable), industrias, testimonios y ajustes en Apariencia > Personalizar. |
-| `semilla/` | Contenido inicial: `seed.php` crea lonas, industrias, páginas, menú y logos con las imágenes de `semilla/img/`. Se puede correr varias veces: actualiza en lugar de duplicar. |
+| `semilla/` | Contenido inicial (subir el número de `semilla/VERSION` para que el próximo despliegue lo vuelva a cargar): `seed.php` crea lonas, industrias, páginas, menú y logos con las imágenes de `semilla/img/`. Se puede correr varias veces: actualiza en lugar de duplicar. |
 | `.github/workflows/desplegar.yml` | Despliegue automático a Hostinger. |
 
 ## Despliegue automático (GitHub → Hostinger)
@@ -12,7 +12,7 @@ Cada `git push` a `main`:
 1. revisa la sintaxis del PHP;
 2. sube `hanzing/` a `wp-content/themes/hanzing/` y `semilla/` a `~/hanzing-semilla/` (fuera de `public_html`) por SSH;
 3. pone WordPress en español de México con enlaces `/%postname%/` y activa el tema;
-4. carga el contenido inicial si todavía no hay lonas (o si `SEMBRAR=si`);
+4. carga el contenido inicial si todavía no hay lonas, si cambió el número de `semilla/VERSION` o si `SEMBRAR=si`;
 5. en modo prueba pide a Google no indexar el sitio, y limpia la caché.
 
 En GitHub → **Settings → Secrets and variables → Actions**:
