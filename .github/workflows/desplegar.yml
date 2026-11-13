@@ -143,6 +143,11 @@ jobs:
             echo "::error::El servidor no está sirviendo esta versión del tema (sirve '${FRESCA:-nada}'). Revisa RUTA_WP: puede apuntar a otra instalación de WordPress."
             exit 1
           fi
+          # Diagnóstico para visitantes sin sesión: cómo llegan los scripts de las animaciones.
+          curl -sL -m 30 -A 'Mozilla/5.0 (despliegue Hanzing)' "$HOME_URL/?hz=diag$(date +%s)" -o portada.html -D cabeceras.txt
+          DIAG="litespeed/javascript=$(grep -c 'litespeed/javascript' portada.html) animado.js=$(grep -c 'animado.js' portada.html) main.js=$(grep -c 'main.js' portada.html) clase-js=$(grep -c "classList.add('js')" portada.html) a-mapa=$(grep -c 'a-mapa__fig' portada.html) cabeceras=[$(grep -iE '^(x-litespeed|x-hcdn|server|x-turbo|cache-control):' cabeceras.txt | tr -d '\r' | tr '\n' ' ')]"
+          echo "::warning::Diagnóstico de portada: $DIAG"
+          grep -oE '<script[^>]*(animado|main)\.js[^>]*>' portada.html | head -4 | sed 's/^/::warning::Script: /' || true
           if [ "$PUBLICA" != "$ESPERADA" ]; then
             echo "::warning::La página pública sigue en caché ('${PUBLICA:-sin sello}'). Purga la caché del CDN en hPanel → Rendimiento → CDN."
           fi
