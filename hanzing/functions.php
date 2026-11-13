@@ -37,6 +37,9 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'hanzing-fonts', "$uri/assets/css/fonts.css", array(), filemtime( "$dir/assets/css/fonts.css" ) );
 	wp_enqueue_style( 'hanzing', "$uri/assets/css/main.css", array(), filemtime( "$dir/assets/css/main.css" ) );
 	wp_enqueue_script( 'hanzing', "$uri/assets/js/main.js", array(), filemtime( "$dir/assets/js/main.js" ), array( 'strategy' => 'defer', 'in_footer' => true ) );
+	// Animaciones de la portada (titular, rollo de 50 m, mapa de envíos, proceso, cortinas).
+	wp_enqueue_style( 'hanzing-animado', "$uri/assets/css/animado.css", array( 'hanzing' ), filemtime( "$dir/assets/css/animado.css" ) );
+	wp_enqueue_script( 'hanzing-animado', "$uri/assets/js/animado.js", array(), filemtime( "$dir/assets/js/animado.js" ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 	// El tema no usa los estilos de bloques de comentarios ni emojis.
 	wp_dequeue_style( 'classic-theme-styles' );
 } );

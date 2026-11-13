@@ -1,4 +1,4 @@
-# Despliega los temas FIERAFLEX / Grupo Hanzing (versión sobria y versión animada) en Hostinger
+# Despliega el tema FIERAFLEX / Grupo Hanzing en Hostinger
 # cada vez que se sube un cambio a la rama main (o al ejecutarlo a mano desde Actions).
 #
 # Secretos (Settings → Secrets and variables → Actions → pestaña Secrets):
@@ -11,9 +11,6 @@
 #
 # Variables opcionales (misma pantalla → pestaña Variables):
 #   MODO_PRUEBA      "si" = pide a Google no indexar el sitio (enlace de prueba). Vacía = si.
-#   TEMA_ACTIVO      Tema que queda activo: "hanzing" (sobria, por defecto) o "hanzing-animado".
-#   COMPARAR         "si" (por defecto) = sube el selector de versiones (?version=sobria / ?version=animada).
-#                    "no" = lo quita, cuando el cliente ya eligió una versión.
 #   SEMBRAR          "si" = vuelve a cargar el contenido inicial (lonas, industrias, páginas, menú).
 #                    Sin ella, el contenido se carga la primera vez y cada vez que cambia semilla/VERSION.
 name: Desplegar Hanzing en Hostinger
@@ -37,13 +34,11 @@ jobs:
       RUTA_WP: ${{ secrets.RUTA_WP }}
       MODO_PRUEBA: ${{ vars.MODO_PRUEBA || 'si' }}
       SEMBRAR: ${{ vars.SEMBRAR }}
-      TEMA_ACTIVO: ${{ vars.TEMA_ACTIVO || 'hanzing' }}
-      COMPARAR: ${{ vars.COMPARAR || 'si' }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Revisar sintaxis de PHP
-        run: find hanzing hanzing-animado mu-plugins semilla -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
+        run: find hanzing semilla -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
 
       - name: Comprobar secretos
         id: listo
@@ -70,14 +65,6 @@ jobs:
           DEST="$SSH_USER@$SSH_HOST"
           $SSH "$DEST" "mkdir -p '$RUTA_WP/wp-content/themes' ~/hanzing-semilla"
           rsync -az --delete --exclude '.DS_Store' -e "$SSH" hanzing/ "$DEST:$RUTA_WP/wp-content/themes/hanzing/"
-          rsync -az --delete --exclude '.DS_Store' -e "$SSH" hanzing-animado/ "$DEST:$RUTA_WP/wp-content/themes/hanzing-animado/"
-          # Selector de versiones para comparar las dos propuestas en el mismo enlace.
-          if [ "$COMPARAR" = "si" ]; then
-            $SSH "$DEST" "mkdir -p '$RUTA_WP/wp-content/mu-plugins'"
-            rsync -az -e "$SSH" mu-plugins/hanzing-versiones.php "$DEST:$RUTA_WP/wp-content/mu-plugins/hanzing-versiones.php"
-          else
-            $SSH "$DEST" "rm -f '$RUTA_WP/wp-content/mu-plugins/hanzing-versiones.php'"
-          fi
           # La semilla queda fuera de public_html: no se publica, solo la usa WP-CLI.
           rsync -az --delete --exclude '.DS_Store' -e "$SSH" semilla/ "$DEST:hanzing-semilla/"
 
@@ -85,7 +72,7 @@ jobs:
         if: steps.listo.outputs.ok == 'true'
         run: |
           ssh -i ~/.ssh/id_deploy -p "${SSH_PORT:-65002}" "$SSH_USER@$SSH_HOST" \
-            "RUTA_WP='$RUTA_WP' MODO_PRUEBA='$MODO_PRUEBA' SEMBRAR='$SEMBRAR' TEMA_ACTIVO='$TEMA_ACTIVO' bash -s" <<'REMOTO'
+            "RUTA_WP='$RUTA_WP' MODO_PRUEBA='$MODO_PRUEBA' SEMBRAR='$SEMBRAR' bash -s" <<'REMOTO'
           set -e
           cd "$RUTA_WP"
           if ! wp core is-installed; then
@@ -98,9 +85,11 @@ jobs:
           [ "$(wp option get WPLANG)" = "es_MX" ] || wp site switch-language es_MX
           [ "$(wp option get permalink_structure)" = "/%postname%/" ] || wp rewrite structure '/%postname%/' --quiet
 
-          if [ "$(wp option get stylesheet)" != "$TEMA_ACTIVO" ]; then
-            wp theme activate "$TEMA_ACTIVO"
+          if [ "$(wp option get stylesheet)" != "hanzing" ]; then
+            wp theme activate hanzing
           fi
+          # La propuesta en dos versiones terminó: la animada quedó en el tema principal.
+          rm -rf wp-content/themes/hanzing-animado wp-content/mu-plugins/hanzing-versiones.php
           echo "Tema activo: $(wp option get stylesheet)"
 
           # Contenido inicial: la primera vez, cuando cambia semilla/VERSION o cuando se pide con SEMBRAR=si.

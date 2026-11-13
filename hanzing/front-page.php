@@ -1,8 +1,9 @@
 <?php
 /**
- * Portada FIERAFLEX: dirección "industrial europeo".
- * Foto a sangre con panel, cifras, catálogo en tarjetas, industrias, ventajas, escala de compra,
- * centro de fichas técnicas, respaldo de Grupo Hanzing y contacto. Movimiento mínimo.
+ * Portada FIERAFLEX, versión animada.
+ * Mismo contenido que la versión sobria, con animaciones corporativas: titular palabra por palabra,
+ * cifras que cuentan, tarjetas con cortina, rollo de 50 m, capas de la lona, mapa de envíos y proceso de compra.
+ * Solo azul noche, acero y naranja FIERAFLEX. Con "reducir movimiento" todo aparece en su estado final.
  */
 get_header();
 $lonas = hanzing_lonas();
@@ -20,14 +21,16 @@ $ventajas = array(
 	array( 'asesoria', 'Asesoría antes de comprar', 'Te ayudamos a elegir gramaje, paso de luz y color según lo que vas a fabricar.' ),
 	array( 'persona', 'Trato directo', 'Hablas con un asesor que responde casi de inmediato en horario de atención.' ),
 );
+$video = get_option( 'hanzing_video', array() );
 ?>
-<section class="home-hero">
+<section class="home-hero a-hero">
 	<?php echo hanzing_img( $foto, '100vw', array( 'loading' => 'eager', 'fetchpriority' => 'high', 'alt' => 'Nave industrial con grandes rollos de material a ambos lados' ) ); ?>
 	<div class="wrap home-hero__wrap">
-		<div class="panel panel--hero" data-load>
-			<h1><?php echo esc_html( hanzing_portada( 'titulo' ) ); ?></h1>
-			<p class="lead"><?php echo esc_html( hanzing_portada( 'texto' ) ); ?></p>
-			<div class="actions">
+		<div class="panel panel--hero a-hero__panel">
+			<h1 aria-label="<?php echo esc_attr( hanzing_portada( 'titulo' ) ); ?>"><span aria-hidden="true"><?php echo hanzing_animado_palabras( hanzing_portada( 'titulo' ) ); // phpcs:ignore -- escapado en la función. ?></span></h1>
+			<svg class="a-hero__filete" viewBox="0 0 120 6" aria-hidden="true"><line x1="0" y1="3" x2="120" y2="3" pathLength="1"/></svg>
+			<p class="lead a-hero__in" style="--d:700ms"><?php echo esc_html( hanzing_portada( 'texto' ) ); ?></p>
+			<div class="actions a-hero__in" style="--d:850ms">
 				<a class="button button--accent" href="<?php echo esc_url( hanzing_whatsapp() ); ?>" target="_blank" rel="noopener"><?php echo hanzing_icon( 'whatsapp' ); ?> Cotizar por WhatsApp</a>
 				<a class="button button--outline" href="<?php echo esc_url( get_post_type_archive_link( 'lona' ) ); ?>">Ver las lonas</a>
 			</div>
@@ -35,17 +38,17 @@ $ventajas = array(
 	</div>
 </section>
 
-<section class="cifras" aria-label="FIERAFLEX en cifras">
+<section class="cifras a-cifras" aria-label="FIERAFLEX en cifras">
 	<div class="wrap">
 		<dl class="cifras__list">
 			<?php foreach ( $cifras as $n => $c ) : ?>
-				<div data-reveal style="--i:<?php echo (int) $n; ?>"><dt><?php echo esc_html( $c[0] ); ?></dt><dd><?php echo esc_html( $c[1] ); ?></dd></div>
+				<div data-reveal style="--i:<?php echo (int) $n; ?>"><dt><?php echo hanzing_animado_cifra( $c[0] ); // phpcs:ignore -- escapado en la función. ?></dt><dd><?php echo esc_html( $c[1] ); ?></dd></div>
 			<?php endforeach; ?>
 		</dl>
 	</div>
 </section>
 
-<section class="section" aria-labelledby="lonas-title">
+<section class="section a-cortinas" aria-labelledby="lonas-title">
 	<div class="wrap">
 		<div class="bar">
 			<div>
@@ -62,7 +65,9 @@ $ventajas = array(
 	</div>
 </section>
 
-<section class="section section--field" aria-labelledby="industrias-title">
+<?php get_template_part( 'template-parts/anim-regla' ); ?>
+
+<section class="section section--field a-cortinas" aria-labelledby="industrias-title">
 	<div class="wrap">
 		<div class="bar">
 			<div>
@@ -75,10 +80,24 @@ $ventajas = array(
 	</div>
 </section>
 
-<section class="section ventajas" aria-labelledby="ventajas-title">
+<?php get_template_part( 'template-parts/capas' ); ?>
+
+<?php get_template_part( 'template-parts/anim-mapa' ); ?>
+
+<?php get_template_part( 'template-parts/anim-proceso' ); ?>
+
+<?php get_template_part( 'template-parts/escala' ); ?>
+
+<section class="section ventajas a-ventajas" aria-labelledby="ventajas-title">
 	<div class="wrap ventajas__grid">
-		<figure class="ventajas__foto" data-reveal>
-			<?php echo hanzing_img( hanzing_foto_id( 'equipo' ), '(min-width: 900px) 45vw, 100vw', array( 'alt' => 'Equipo de Grupo Hanzing frente a los anaqueles de rollos de lona' ) ); ?>
+		<figure class="ventajas__foto a-cortina" data-anim>
+			<?php if ( ! empty( $video['mp4'] ) ) : ?>
+				<video muted loop playsinline preload="metadata" poster="<?php echo esc_url( wp_get_attachment_url( (int) $video['poster'] ) ); ?>" aria-hidden="true" data-autoplay>
+					<source src="<?php echo esc_url( wp_get_attachment_url( (int) $video['mp4'] ) ); ?>" type="video/mp4">
+				</video>
+			<?php else : ?>
+				<?php echo hanzing_img( hanzing_foto_id( 'equipo' ), '(min-width: 900px) 45vw, 100vw', array( 'alt' => 'Equipo de Grupo Hanzing frente a los anaqueles de rollos de lona' ) ); ?>
+			<?php endif; ?>
 		</figure>
 		<div>
 			<h2 id="ventajas-title" data-reveal>Por qué FIERAFLEX</h2>
@@ -94,8 +113,6 @@ $ventajas = array(
 		</div>
 	</div>
 </section>
-
-<?php get_template_part( 'template-parts/escala' ); ?>
 
 <?php get_template_part( 'template-parts/descargas' ); ?>
 

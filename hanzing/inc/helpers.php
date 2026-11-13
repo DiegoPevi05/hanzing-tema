@@ -55,3 +55,17 @@ function hanzing_grupos_luz() {
 function hanzing_rampa() {
 	return array( '#ffffff', '#eef1f6', '#dde2ea', '#c7cedb', '#adb6c8', '#919cb3', '#76829c', '#5b6784', '#424d6b', '#2b3452', '#131a3a' );
 }
+
+/** Envuelve cada palabra para que el titular entre palabra por palabra. */
+function hanzing_animado_palabras( $texto ) {
+	$out = '';
+	foreach ( preg_split( '/\s+/', trim( $texto ) ) as $n => $w ) {
+		$out .= '<span class="w"><span style="--w:' . (int) $n . '">' . esc_html( $w ) . '</span></span> ';
+	}
+	return trim( $out );
+}
+
+/** Marca los números de una cifra para que cuenten al entrar en pantalla. */
+function hanzing_animado_cifra( $texto ) {
+	return preg_replace_callback( '/\d+/', fn( $m ) => '<span data-cuenta="' . (int) $m[0] . '">' . $m[0] . '</span>', esc_html( $texto ) );
+}
